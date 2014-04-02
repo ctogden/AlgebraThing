@@ -1,3 +1,7 @@
+a{
+    color: #47008d;
+    text-decoration: none;
+    }
 html, body {
     position: relative;
     min-width: 100%;
@@ -9,12 +13,10 @@ html, body {
 
 #main_header {
     position: relative;
-    width: 95%;
     min-width: 870px;
-    height: 60px;
-    background: #ff009d;
-    margin: 0 auto;
-    margin-top: 10px;
+    height: 50px;
+    background: #47008d;
+    margin: 10px 10px 0 10px;
 }
 
 #header_left {
@@ -25,7 +27,7 @@ html, body {
 #header_left span {
     color: #ffffff;
     font-size: 20pt;
-    line-height: 60px;
+    line-height: 50px;
 }
 
 #header_right {
@@ -34,12 +36,12 @@ html, body {
 }
 
 #header_list {
-    
+    margin-top: 15px; 
 }
 
 #header_list li {
     display: inline-block;
-    font-size: 18pt;
+    font-size: 14pt;
     color: #ffffff;
     margin-left: 30px;
     list-style-type: none;
@@ -53,32 +55,6 @@ html, body {
     margin: 0 auto;
 }
 
-#main_left {
-    float: left;
-    width: 45%;
-    height: auto;
-    margin-top: 20px; 
-}
-
-#main_right {
-    float: right;
-    width: 45%;
-    height: auto;
-    margin-top: 20px;
-}
-
-#user_info_container {
-    position: relative;
-    width: 90%;
-    height: auto;
-    margin: 0 auto;
-    border: 1px solid;
-    border-radius: 5px;
-    box-shadow: 2px 2px 3px 1px #ddd;
-    -moz-box-shadow: 2px 2px 3px 1px #ddd;
-    -webkit-box-shadow: 2px 2px 3px 1px #ddd;
-    margin-bottom: 20px;
-}
 
 .header {
     display: block;
@@ -88,48 +64,65 @@ html, body {
     margin-bottom: 20px;
 }
 
-#user_info_body {
-    position: relative;
+#equation_editor {
+        position: relative; 
+        width: 350px; 
+        margin-top: 250px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 2px solid grey;
+        height:50px;
+        padding: 5px;
 }
 
-#user_info_body ul {
+#equation_input:focus {
+    outline: 0;
+}
+
+#equation_input{
+    border: none; 
+    width: 340px;
+    height: 40px;
+    font-size: 30px; 
+    
+    
+    }
+    
+#go_button{
+    position: absolute; 
+    right: 5px; 
+    top: 5px;
+    bottom: 5px;
+    border-radius: 0; 
+    background-color: #47008d;
+    border:none; 
+    color: white; 
+    font-size: 16pt; 
+    
+    }
+
+#footer{
+    position:fixed; 
+    bottom:0; 
+    left: 50%; 
+    margin-left: -150px; 
+    
+    }
+    
+#footer > div {
+    float: left; 
     
 }
 
-#user_info_body ul li {
-    font-size: 16pt;
-    list-style-type: none;
-}
+#faq{ 
+    margin-left: 20px; 
+    }
 
-#classrooms_container {
-    position: relative;
-    width: 90%;
-    height: auto;
-    margin: 0 auto;
-    border: 1px solid;
-    border-radius: 5px;
-    box-shadow: 2px 2px 3px 1px #ddd;
-    -moz-box-shadow: 2px 2px 3px 1px #ddd;
-    -webkit-box-shadow: 2px 2px 3px 1px #ddd;
-}
+#contact{
+    
+    margin-left: 20px; 
+    
+    }
 
-#report_card_container {
-    position: relative;
-    width: 90%;
-    height: auto;
-    margin: 0 auto;
-    border: 1px solid;
-    border-radius: 5px;
-    box-shadow: 2px 2px 3px 1px #ddd;
-    -moz-box-shadow: 2px 2px 3px 1px #ddd;
-    -webkit-box-shadow: 2px 2px 3px 1px #ddd;
-}
 
-.row_container {
-    position: relative;
-    display: block;
-    text-align: center;
-    width: 100%;
-    height: 45px;
-    font-size: 16pt;
-}
+
