@@ -8,12 +8,12 @@
   <!-- Servlets -->
   <servlet>
     <servlet-name>greetServlet</servlet-name>
-    <servlet-class>com.jazzberryjam.algebra_thing.server.GreetingServiceImpl</servlet-class>
+    <servlet-class>com.jazzberryjam.algebra_thing.AlgebraThing</servlet-class>
   </servlet>
   
   <servlet-mapping>
     <servlet-name>greetServlet</servlet-name>
-    <url-pattern>/algebrathing/greet</url-pattern>
+    <url-pattern>/test</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->
