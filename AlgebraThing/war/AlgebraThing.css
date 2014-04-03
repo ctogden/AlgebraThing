@@ -78,15 +78,19 @@ html, body {
 #equation_input:focus {
     outline: 0;
 }
-
+#equation_display{
+	position:relative;
+	top:200px;
+	right:580px;   /* //right = 600px ; direction:rtl */ /* //left = 840px ; direction:ltr */
+	direction: rtl;
+}
 #equation_input{
     border: none; 
     width: 340px;
     height: 40px;
     font-size: 30px; 
     
-    
-    }
+}
     
 #go_button{
     position: absolute; 
@@ -100,7 +104,7 @@ html, body {
     font-size: 16pt; 
     
     }
-
+    
 #footer{
     position:fixed; 
     bottom:0; 

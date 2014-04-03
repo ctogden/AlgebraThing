@@ -1,55 +1,43 @@
 <!doctype html>
+<html data-ng-app>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<script type='text/javascript' src='scripts/angular.min.js' ></script>
+<script type='text/javascript' src='scripts/main.js'></script>
+<link type="text/css" rel="stylesheet" href="AlgebraThing.css">
 
-<html>
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+</head>
+<body>
+	<header id="main_header">
+		<div id="header_left">
+			<span>AlgebraThing</span>
+		</div>
+		<div id="header_right">
+			<ul id="header_list">
+				<li>New Equation</li>
+				<li>Save</li>
+				<li>My Profile</li>
+			</ul>
+		</div>
+	</header>
+	<div id="main_content" data-ng-controller="MainController" >
+	 <div id="equation_display">
+	 		<p data-ng-repeat="equation in equations">{{ equation }}</p>
+	 </div>
 
-    <!--                                                               -->
-    <!-- Consider inlining CSS to reduce the number of requested files -->
-    <!--                                                               -->
-    <link type="text/css" rel="stylesheet" href="AlgebraThing.css">
+		<div id="equation_editor" >
+			<input type="text" data-ng-model="newEquation" placeholder="Enter an equation" id="equation_input">
+			
+			<button data-ng-click="submitEquation()" id="go_button">Go</button>
+			
+		</div>
+	</div>
 
-    <!--                                           -->
-    <!-- Any title is fine                         -->
-    <!--                                           -->
-   
-    
-    <!--                                           -->
-    <!-- This script loads your compiled module.   -->
-    <!-- If you add any GWT meta tags, they must   -->
-    <!-- be added before this line.                -->
-    <!--                                           -->
-  </head>
+	<!-- Footer -->
+	<div id="footer">
+		<div id="copyright">© JJ Enterprises</div>
+		<a id="faq" href=#>FAQ</a> <a id="contact" href=#>Contact</a>
+	</div>
 
-  <!--                                           -->
-  <!-- The body can have arbitrary html, or      -->
-  <!-- you can leave the body empty if you want  -->
-  <!-- to create a completely dynamic UI.        -->
-  <!--                                           -->
-  <body>
-     <body>
-        <header id="main_header">
-            <div id="header_left">
-                <span>AlgebraThing</span>
-            </div>
-            <div id="header_right">
-                <ul id="header_list">
-                    <li>New Equation</li>
-                    <li>Save</li>
-                    <li>My Profile</li>
-                </ul>
-            </div>
-        </header>
-        <div id="main_content">
-                       <div id="equation_editor">
-                       <input id="equation_input"> </input>  
-                       <button id="go_button"> Go </button>
-                       </div> 
-        </div>
-        <div id="footer">
-        <div id="copyright">© JJ Enterprises</div> 
-        <a id="faq" href=# >FAQ</a>      
-        <a id="contact" href=# >Contact</a>
-        </div>
-  </body>
+</body>
 </html>
