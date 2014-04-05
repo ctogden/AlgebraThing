@@ -4,6 +4,7 @@
 
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="AlgebraThing.css">
+<link type="text/css" rel="stylesheet" href="bootstrap.css">
 
 
 <!-- External Scripts -->
@@ -12,8 +13,24 @@
 <script type='text/javascript' src='scripts/jquery.min.js'></script>
 <script type='text/javascript' src='scripts/bootstrap.min.js'></script>
 
+
 </head>
 <body>
+	<div class="modal fade" id="welcome" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">Algebra Thing</h4>
+				</div>
+				<div class="modal-body">The best way to practice algebra.
+				<p> More content goes here... </p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Let's Practice Algebra!</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<header id="main_header">
 		<div id="header_left">
 			<span>AlgebraThing</span>
@@ -38,9 +55,8 @@
 			<button data-ng-click="submitEquation()" id="go_button">Go</button>
 
 		</div>
-		<a id="equation_help" rel="popover" data-content="Content goes here...">
-			Equation Help
-		</a>
+		<a id="equation_help" rel="popover"
+			data-content="Content goes here..."> Equation Help </a>
 	</div>
 
 	<!-- Footer -->
@@ -49,16 +65,19 @@
 		<a id="faq" href=#>FAQ</a> <a id="contact" href=#>Contact</a>
 	</div>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
 	$(function(){
+		
+		 $(window).load(function(){
+		        $('#welcome').modal('show');
+		    });
 		
 		$('#equation_help').popover({
 	 		trigger: 'click',
 		    placement: 'right',
 		    title: 'Help'
 	 	});
-		
 		
 	});
  	
