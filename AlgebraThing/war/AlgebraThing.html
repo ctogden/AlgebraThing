@@ -1,10 +1,16 @@
 <!doctype html>
 <html data-ng-app>
 <head>
+
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<script type='text/javascript' src='scripts/angular.min.js' ></script>
-<script type='text/javascript' src='scripts/main.js'></script>
 <link type="text/css" rel="stylesheet" href="AlgebraThing.css">
+
+
+<!-- External Scripts -->
+<script type='text/javascript' src='scripts/angular.min.js'></script>
+<script type='text/javascript' src='scripts/main.js'></script>
+<script type='text/javascript' src='scripts/jquery.min.js'></script>
+<script type='text/javascript' src='scripts/bootstrap.min.js'></script>
 
 </head>
 <body>
@@ -20,17 +26,21 @@
 			</ul>
 		</div>
 	</header>
-	<div id="main_content" data-ng-controller="MainController" >
-	 <div id="equation_display">
-	 		<p data-ng-repeat="equation in equations">{{ equation }}</p>
-	 </div>
-
-		<div id="equation_editor" >
-			<input type="text" data-ng-model="newEquation" placeholder="Enter an equation" id="equation_input">
-			
-			<button data-ng-click="submitEquation()" id="go_button">Go</button>
-			
+	<div id="main_content" data-ng-controller="MainController">
+		<div id="equation_display">
+			<p data-ng-repeat="equation in equations">{{ equation }}</p>
 		</div>
+
+		<div id="equation_editor">
+			<input type="text" data-ng-model="newEquation"
+				placeholder="Enter an equation" id="equation_input">
+
+			<button data-ng-click="submitEquation()" id="go_button">Go</button>
+
+		</div>
+		<a id="equation_help" rel="popover" data-content="Content goes here...">
+			Equation Help
+		</a>
 	</div>
 
 	<!-- Footer -->
@@ -39,5 +49,19 @@
 		<a id="faq" href=#>FAQ</a> <a id="contact" href=#>Contact</a>
 	</div>
 
+<script type="text/javascript">
+
+	$(function(){
+		
+		$('#equation_help').popover({
+	 		trigger: 'click',
+		    placement: 'right',
+		    title: 'Help'
+	 	});
+		
+		
+	});
+ 	
+</script>
 </body>
 </html>
