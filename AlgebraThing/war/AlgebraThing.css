@@ -1,141 +1,148 @@
-a{
-    color: #47008d;
-    text-decoration: none;
-    }
-html, body {
-    position: relative;
-    min-width: 100%;
-    min-height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: Arial;
+a {
+	color: #47008d;
+	text-decoration: none;
+}
+
+html,body {
+	position: relative;
+	min-width: 100%;
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: Arial;
 }
 
 #main_header {
-    position: relative;
-    min-width: 870px;
-    height: 50px;
-    background: #47008d;
-    margin: 10px 10px 0 10px;
+	position: relative;
+	min-width: 870px;
+	height: 50px;
+	background: #47008d;
+	margin: 10px 10px 0 10px;
 }
 
 #header_left {
-    float: left;
-    margin-left: 25px;
+	float: left;
+	margin-left: 25px;
 }
 
 #header_left span {
-    color: #ffffff;
-    font-size: 20pt;
-    line-height: 50px;
+	color: #ffffff;
+	font-size: 20pt;
+	line-height: 50px;
 }
 
 #header_right {
-    float: right;
-    margin-right: 25px;
+	float: right;
+	margin-right: 25px;
 }
 
 #header_list {
-    margin-top: 15px; 
+	margin-top: 15px;
 }
 
 #header_list li {
-    display: inline-block;
-    font-size: 14pt;
-    color: #ffffff;
-    margin-left: 30px;
-    list-style-type: none;
+	display: inline-block;
+	font-size: 14pt;
+	color: #ffffff;
+	margin-left: 30px;
+	list-style-type: none;
 }
 
 #main_content {
-    position: relative;
-    width: 90%;
-    min-width: 850px;
-    height: auto;
-    margin: 0 auto;
+	position: relative;
+	width: 90%;
+	min-width: 850px;
+	height: auto;
+	margin: 0 auto;
 }
 
-
 .header {
-    display: block;
-    text-align: center;
-    font-size: 18pt;
-    line-height: 40px;
-    margin-bottom: 20px;
+	display: block;
+	text-align: center;
+	font-size: 18pt;
+	line-height: 40px;
+	margin-bottom: 20px;
 }
 
 #equation_editor {
-        position: relative; 
-        width: 350px; 
-        margin-top: 250px;
-        margin-left: auto;
-        margin-right: auto;
-        border: 2px solid grey;
-        height:50px;
-        padding: 5px;
+	position: relative;
+	width: 350px;
+	margin-top: 400px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 2px solid grey;
+	height: 50px;
+	padding: 5px;
 }
 
 #equation_input:focus {
-    outline: 0;
+	outline: 0;
 }
-#equation_display{
-	position:relative;
-	top:200px;
-	right:580px;   
+
+#equation_display {
+	position: relative;
+	top: 330px;
+	right: 320px;
 	direction: rtl;
 	font-size: 24px;
 }
 
-#equation_input{
-    border: none; 
-    width: 340px;
-    height: 40px;
-    font-size: 30px; 
-    
+#equation_input {
+	border: none;
+	width: 340px;
+	height: 40px;
+	font-size: 20px;
 }
 
-#equation_help{	
-	position:absolute;
-	color: #47008d; 
+#equation_help {
+	position: absolute;
+	color: #47008d;
 	padding-top: 8px;
-	left:770px;
+	left: 770px;
 	cursor: pointer;
-}  
-
-#go_button{
-    position: absolute; 
-    right: 5px; 
-    top: 5px;
-    bottom: 5px;
-    border-radius: 0; 
-    background-color: #47008d;
-    border:none; 
-    color: white; 
-    font-size: 16pt; 
-    
-    }
-    
-#footer{
-    position:fixed; 
-    bottom:0; 
-    left: 50%; 
-    margin-left: -150px; 
-    
-    }
-    
-#footer > div {
-    float: left; 
-    
 }
 
-#faq{ 
-    margin-left: 20px; 
-    }
+#go_button {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	bottom: 5px;
+	border-radius: 0;
+	background-color: #47008d;
+	border: none;
+	color: white;
+	font-size: 16pt;
+}
 
-#contact{
-    
-    margin-left: 20px; 
-    
-    }
+#footer {
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	margin-left: -120px;
+}
 
+#footer>div {
+	float: left;
+}
 
+#faq {
+	margin-left: 20px;
+}
+
+#contact {
+	margin-left: 20px;
+}
+
+#function_bar {
+	position: absolute;
+	top: 400px;
+	left: 580px;
+}
+
+#more_functions {
+	position: absolute;
+	top: 60px;
+	right: 0px;
+	color: #47008d;
+	cursor: pointer;
+}

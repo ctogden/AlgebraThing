@@ -9,9 +9,9 @@
 
 <!-- External Scripts -->
 <script type='text/javascript' src='scripts/angular.min.js'></script>
-<script type='text/javascript' src='scripts/main.js'></script>
 <script type='text/javascript' src='scripts/jquery.min.js'></script>
 <script type='text/javascript' src='scripts/bootstrap.min.js'></script>
+<script type='text/javascript' src='scripts/main.js'></script>
 
 
 </head>
@@ -53,10 +53,16 @@
 				placeholder="Enter an equation" id="equation_input">
 
 			<button data-ng-click="submitEquation()" id="go_button">Go</button>
-
 		</div>
-		<a id="equation_help" rel="popover"
-			data-content="Content goes here..."> Equation Help </a>
+		<a id="equation_help" data-content="Content goes here..."> Equation Help </a>
+			
+		<div id="function_bar">
+			<button id="add_function" type="button" class="btn btn-functions" >+</button>
+			<button id="subtract_function" type="button" class="btn btn-functions" >-</button>
+			<button id="multiply_function" type="button" class="btn btn-functions" >x</button>
+			<button id="divide_function" type="button" class="btn btn-functions" >/</button>
+			<a id="more_functions" data-content="Function Buttons go here.."> More operations </a>	
+		</div>
 	</div>
 
 	<!-- Footer -->
@@ -65,22 +71,5 @@
 		<a id="faq" href=#>FAQ</a> <a id="contact" href=#>Contact</a>
 	</div>
 
-	<script type="text/javascript">
-
-	$(function(){
-		
-		 $(window).load(function(){
-		        $('#welcome').modal('show');
-		    });
-		
-		$('#equation_help').popover({
-	 		trigger: 'click',
-		    placement: 'right',
-		    title: 'Help'
-	 	});
-		
-	});
- 	
-</script>
 </body>
 </html>
