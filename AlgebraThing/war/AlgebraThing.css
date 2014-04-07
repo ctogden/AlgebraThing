@@ -12,40 +12,8 @@ html,body {
 	font-family: Arial;
 }
 
-#main_header {
-	position: relative;
-	min-width: 870px;
-	height: 50px;
+#main_header{
 	background: #47008d;
-	margin: 10px 10px 0 10px;
-}
-
-#header_left {
-	float: left;
-	margin-left: 25px;
-}
-
-#header_left span {
-	color: #ffffff;
-	font-size: 20pt;
-	line-height: 50px;
-}
-
-#header_right {
-	float: right;
-	margin-right: 25px;
-}
-
-#header_list {
-	margin-top: 15px;
-}
-
-#header_list li {
-	display: inline-block;
-	font-size: 14pt;
-	color: #ffffff;
-	margin-left: 30px;
-	list-style-type: none;
 }
 
 #main_content {
@@ -62,6 +30,30 @@ html,body {
 	font-size: 18pt;
 	line-height: 40px;
 	margin-bottom: 20px;
+}
+
+#navbar {
+	background-color: #47008d; 
+	
+}
+
+#navbar .active > a {
+	background-color: #47008d; 
+	
+}
+
+#navbar .navbar-nav a {
+	color: white;
+}
+
+#navbar .navbar-brand {
+	color: white;
+}
+
+#function_bar .btn {
+	width: 40px;
+	height: 40px;
+	border-radius: 30px; 
 }
 
 #equation_editor {
