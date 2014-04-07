@@ -21,19 +21,40 @@ $(function(){
 	 	});
 		
 });
-
-//Angular Controller
-function MainController($scope){
+(function () {
+	"use strict";
+	var equationEditorApp = angular.module('equationEditorApp', [
+	                                                             'ngRoute',
+	                                                             'equationEditorControllers'
+	                                                             ]);
 	
-	$scope.equations = [];
+	equationEditorApp.config(function($routeProvider) {
+	                      $routeProvider.
+	                        when('/new', {
+	                          templateUrl: 'partials/NewEquation.html',
+	                          controller: 'NewEquationCtrl'
+	                        }).
+	                        when('/editor/:equationId', {
+	                          templateUrl: 'partials/EquationEditor.html',
+	                          controller: 'EquationEditorCtrl'
+	                        }).
+	                        otherwise({
+	                          redirectTo: '/new'
+	                        });
+	                    });
 	
-	$scope.submitEquation = function()
-	{
-		$scope.equations.push($scope.newEquation);
-        $scope.newEquation = "";
-        $('#equation_editor').hide();
-        $('#equation_help').hide();
-        $('#function_bar').show();
-	}
+	var equations = [];
+	var equationEditorControllers = angular.module('equationEditorControllers', []);
+	equationEditorControllers.controller('NewEquationCtrl', function NewEquationCtrl($scope, $location) {
+		$scope.submitEquation = function()
+		{
+			equations.push($scope.newEquation);
+	        $scope.newEquation = "";
+	        $location.path("/editor/" + (equations.length - 1));
+		}
+    });
 	
-}
+	equationEditorControllers.controller("EquationEditorCtrl", function EquationEditorCtrl($scope, $routeParams) {
+		$scope.equation = equations[$routeParams.equationId];
+	});
+})();
