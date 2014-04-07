@@ -1,5 +1,5 @@
-
 var infixToPostfix = function(expression){
+    // TODO - add support for more operators and also parentheses
     console.log("---");
     var postfix = "";
     var operators = ["+", "-", "*", "/"];
@@ -11,7 +11,7 @@ var infixToPostfix = function(expression){
         // TODO: allow numbers greater than 10
         if(!isNaN(char) || char.match(/[a-z]/i)){
             postfix = postfix + char;
-            console.log(postfix);
+            console.log("a" + postfix);
         }
         else if(operators.indexOf(char) != -1){
             var popped;
@@ -19,6 +19,7 @@ var infixToPostfix = function(expression){
                 popped = stack.pop();
                 if((isLeftAssociative(char) && precedence(char) === precedence(popped)) || (precedence(char) < precedence(popped))){
                     postfix = postfix + popped;
+                    console.log("b" + postfix);
                     popped = stack.pop();
                 }
                 else{
@@ -34,10 +35,9 @@ var infixToPostfix = function(expression){
         }
     }
     while(stack.length > 0){
-        var chara = stack.pop();
-        console.log(chara);
-        postfix = postfix + chara;
-        console.log(postfix);
+        var poppedOperator = stack.pop();
+        postfix = postfix + poppedOperator;
+        console.log("c" + postfix);
     }
     return postfix;
 };
@@ -49,12 +49,9 @@ var precedence = function(operator){
 };
 
 var isLeftAssociative = function(operator){
-    if(operator === "/" || operator === "-"){ return true; }
+    if(operator === "/" || operator === "-" || operator === "*" || operator === "+"){ return true; }
     return false;
 };
                    
 var s = "1+2-3*4-5+6+7";  // Expect 12+34*-5-6+7+
 console.log(infixToPostfix(s));
-# start in web directory
-cd /var/www
-
