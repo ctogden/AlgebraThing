@@ -83,9 +83,26 @@ html,body {
 #equation_display {
 	position: relative;
 	top: 330px;
-	right: 320px;
+	right: 620px;
 	direction: rtl;
 	font-size: 24px;
+}
+
+#operator_display_side1{
+	position: absolute;
+	top: 35px;
+	right: 135px;
+	font-size: 24px;
+	color: #47008d;
+}
+
+#operator_display_side2{
+	position: absolute;
+	top: 35px;
+	right: -28px;
+	font-size: 24px;
+	color: #47008d;
+	
 }
 
 #equation_input {
@@ -238,3 +255,4 @@ html,body {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
