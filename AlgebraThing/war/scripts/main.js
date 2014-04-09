@@ -30,7 +30,7 @@ $(function(){
 	                    });
 	
 	var equations = [];
-	var equationEditorControllers = angular.module('equationEditorControllers', [['ui.bootstrap']]);
+	var equationEditorControllers = angular.module('equationEditorControllers', ['ui.bootstrap']);
 	equationEditorControllers.controller('NewEquationCtrl', function NewEquationCtrl($scope, $location) {
 		$scope.submitEquation = function()
 		{
