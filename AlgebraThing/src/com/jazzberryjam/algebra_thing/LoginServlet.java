@@ -39,19 +39,18 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     	
-    	HttpSession session = request.getSession(true);
-    	
-        LoginStatusBean loginStatus = (LoginStatusBean) session.getAttribute("loginStatusBean");
-        UserDataBean userDataBean = (UserDataBean) session.getAttribute("userDataBean");
+    	ServletContext context = getServletContext();
+        LoginStatusBean loginStatus = (LoginStatusBean) context.getAttribute("loginStatusBean");
+        UserDataBean userDataBean = (UserDataBean) context.getAttribute("userDataBean");
         
         if(loginStatus == null) {
         	loginStatus = new LoginStatusBean();
-        	session.setAttribute("loginStatusBean", loginStatus);
+        	context.setAttribute("loginStatusBean", loginStatus);
         }
         
         if(userDataBean == null) {
         	userDataBean = new UserDataBean();
-        	session	.setAttribute("userDataBean", userDataBean);
+        	context.setAttribute("userDataBean", userDataBean);
         }
         
         loginStatus.setUsername(request.getParameter("username"));
@@ -60,8 +59,7 @@ public class LoginServlet extends HttpServlet {
         if(loginStatus.getUsername().equals("") || loginStatus.getPword().equals("")) {
         	// TODO: ADD AN AJAX RESPONSE HERE WITH THE ERROR DETAILS TO PROVIDE
         	// FEEDBACK TO THE USER
-        	RequestDispatcher dispatcher = request.getRequestDispatcher("AlgebraThing.jsp");
-        	dispatcher.forward(request, response);
+        	response.sendRedirect("AlgebraThing.jsp");
         	return;
         }
         
@@ -110,8 +108,7 @@ public class LoginServlet extends HttpServlet {
         	}
         }
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("AlgebraThing.jsp");
-    	dispatcher.forward(request, response);
+        response.sendRedirect("AlgebraThing.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

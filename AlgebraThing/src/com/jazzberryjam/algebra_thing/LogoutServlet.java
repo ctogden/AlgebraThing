@@ -28,18 +28,18 @@ public class LogoutServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-    	HttpSession session = request.getSession(true);
-    	LoginStatusBean loginStatus = (LoginStatusBean) session.getAttribute("loginStatusBean");
-        UserDataBean userDataBean = (UserDataBean) session.getAttribute("userDataBean");
+    	ServletContext context = getServletContext();
+    	LoginStatusBean loginStatus = (LoginStatusBean) context.getAttribute("loginStatusBean");
+        UserDataBean userDataBean = (UserDataBean) context.getAttribute("userDataBean");
         
         if(loginStatus == null) {
         	loginStatus = new LoginStatusBean();
-        	session.setAttribute("loginStatusBean", loginStatus);
+        	context.setAttribute("loginStatusBean", loginStatus);
         }
         
         if(userDataBean == null) {
         	userDataBean = new UserDataBean();
-        	session.setAttribute("userDataBean", userDataBean);
+        	context.setAttribute("userDataBean", userDataBean);
         }
         
         loginStatus.setLoggedIn(false);
@@ -51,12 +51,7 @@ public class LogoutServlet extends HttpServlet {
         userDataBean.setUsername(null);
         userDataBean.setUserType(null);
         
-        if(session != null) {
-        	session.invalidate();
-        }
-        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("AlgebraThing.jsp");
-    	dispatcher.forward(request, response);
+        response.sendRedirect("AlgebraThing.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
