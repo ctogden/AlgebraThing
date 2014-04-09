@@ -20,7 +20,6 @@ var infixToPostfix = function(expression){
                 popped = stack.pop();
                 if((isLeftAssociative(char) && precedence(char) === precedence(popped)) || (precedence(char) < precedence(popped))){
                     postfix.push(popped);
-                    popped = stack.pop();
                 }
                 else{
                     stack.push(popped);
@@ -38,6 +37,7 @@ var infixToPostfix = function(expression){
         var poppedOperator = stack.pop();
         postfix.push(poppedOperator);
     }
+    console.log(postfix);
     return postfix;
 };
 
@@ -60,32 +60,40 @@ var simplifyOperands = function(rpnExpressionArray){
     // If two numbers followed by an operator, substitute result and step
     // position back to that substituted value. If either operand is a 
     // variable, move on.
-    for(var i = 0; i < rpnExpressionArray.length; i++){
-        if(!isNaN(rpnExpressionArray[i]) && !isNaN(rpnExpressionArray[i+1])){
-            var a = parseInt(rpnExpressionArray[i], 10);
-            var b = parseInt(rpnExpressionArray[i+1], 10);
-            if(rpnExpressionArray[i+2] === "*"){
-                newPostfixArray = substituteInPostfixArray(rpnExpressionArray, i, a*b);
+    var testOperation;
+    for(var i = 2; i < rpnExpressionArray.length; i++){
+        if(rpnExpressionArray[i] === "*"){
+            testOperation = parseInt(rpnExpressionArray[i-2], 10) * parseInt(rpnExpressionArray[i-1], 10);
+            if(!isNaN(testOperation)){
+                newPostfixArray = substituteInPostfixArray(rpnExpressionArray, i-2, testOperation.toString());
+                return simplifyOperands(newPostfixArray);   
+            }
+        } 
+        else if (rpnExpressionArray[i] === "/"){
+            testOperation = parseInt(rpnExpressionArray[i-2], 10) / parseInt(rpnExpressionArray[i-1], 10);
+            if(!isNaN(testOperation)){
+                newPostfixArray = substituteInPostfixArray(rpnExpressionArray, i-2, testOperation.toString());
                 return simplifyOperands(newPostfixArray);
             }
-            else if(rpnExpressionArray[i+2] === "+"){
-                newPostfixArray = substituteInPostfixArray(rpnExpressionArray, i, a+b);
-                return simplifyOperands(newPostfixArray);
+        } 
+        else if (rpnExpressionArray[i] === "+"){
+            testOperation = parseInt(rpnExpressionArray[i-2], 10) + parseInt(rpnExpressionArray[i-1], 10);
+            if(!isNaN(testOperation)){
+                newPostfixArray = substituteInPostfixArray(rpnExpressionArray, i-2, testOperation.toString());
+                return simplifyOperands(newPostfixArray); 
             }
-            else if(rpnExpressionArray[i+2] === "/"){
-                newPostfixArray = substituteInPostfixArray(rpnExpressionArray, i, a/b);
-                return simplifyOperands(newPostfixArray);
+        } 
+        else if (rpnExpressionArray[i] === "-"){
+            testOperation = parseInt(rpnExpressionArray[i-2], 10) - parseInt(rpnExpressionArray[i-1], 10);
+            if(!isNaN(testOperation)){
+                newPostfixArray = substituteInPostfixArray(rpnExpressionArray, i-2, testOperation.toString());
+                return simplifyOperands(newPostfixArray); 
             }
-            else if(rpnExpressionArray[i+2] === "-"){
-                newPostfixArray = substituteInPostfixArray(rpnExpressionArray, i, a-b);
-                return simplifyOperands(newPostfixArray);
-            }
-        }
-        
+        }                  
     }
     return rpnExpressionArray;
-    // TODO: doesn't fully work for our example of 12+3n*-5-6+7+ because we forgot to 
-    // account for precedence
+    // TODO - doesn't fully work for all cases because I haven't yet
+    // accounted for associativity.
 };
 
 var substituteInPostfixArray = function(array, count, substitution){
@@ -107,6 +115,7 @@ var toSimplifiedPostfix = function(infixExpression){
 
 function DoMath(rpnExpressionArray){
     this.expression = rpnExpressionArray;
+    console.log(this.expression);
 }
 
 DoMath.prototype.add = function(value){
@@ -134,62 +143,14 @@ DoMath.prototype.divide = function(value){
 };
 
 console.log("---");
-var s = "1+2-3*n-5+6+7";  // Expect 12+3n*-5-6+7+
+var s = "2+2-3*n-5+6+7";  // Expect 12+3n*-5-6+7+
 console.log(toSimplifiedPostfix(s));
 
-var doMath = new DoMath(toSimplifiedPostfix("1+2-3*n-5+6+7"));
+console.log(simplifyOperands([2, 2, "*", 2, 13, "*", "*", 3, 4, "-", "/", 1, "+"]));
+
+var doMath = new DoMath(toSimplifiedPostfix("3*n*3"));
 console.log(doMath.subtract(7));
+console.log(doMath.add(4));
+console.log(doMath.divide(129));
 
 
-    // use an array as a stack
-    var stack = [];
-    for(var count = 0; count < expression.length; count++){
-        var char = expression.charAt(count);
-        // check for operands, allowing single letter variables or single digit numbers
-        // TODO: allow numbers greater than 10
-        if(!isNaN(char) || char.match(/[a-z]/i)){
-            postfix = postfix + char;
-            console.log("a" + postfix);
-        }
-        else if(operators.indexOf(char) != -1){
-            var popped;
-            while(stack.length > 0){
-                popped = stack.pop();
-                if((isLeftAssociative(char) && precedence(char) === precedence(popped)) || (precedence(char) < precedence(popped))){
-                    postfix = postfix + popped;
-                    console.log("b" + postfix);
-                    popped = stack.pop();
-                }
-                else{
-                    stack.push(popped);
-                    break;
-                }
-                
-            }
-            stack.push(char);
-        }
-        else{
-            return "ERROR"; // TODO
-        }
-    }
-    while(stack.length > 0){
-        var poppedOperator = stack.pop();
-        postfix = postfix + poppedOperator;
-        console.log("c" + postfix);
-    }
-    return postfix;
-};
-
-var precedence = function(operator){
-    if(operator === "+" || operator === "-"){ return 1; }
-    else if(operator === "*" || operator === "/"){ return 2; }
-    else{ return "Not an operator"; }
-};
-
-var isLeftAssociative = function(operator){
-    if(operator === "/" || operator === "-" || operator === "*" || operator === "+"){ return true; }
-    return false;
-};
-                   
-var s = "1+2-3*4-5+6+7";  // Expect 12+34*-5-6+7+
-console.log(infixToPostfix(s));
