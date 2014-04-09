@@ -8,4 +8,5 @@ import javax.servlet.http.HttpServlet;
  */
 public class AlgebraThing extends HttpServlet {
 
+
 }
