@@ -1,8 +1,10 @@
 package com.jazzberryjam.algebra_thing.beans;
 
+import java.io.Serializable;
+
 import com.jazzberryjam.algebra_thing.data.UserType;
 
-public class UserDataBean {
+public class UserDataBean implements Serializable {
 	private String username;
 	private String email;
 	private String firstname;

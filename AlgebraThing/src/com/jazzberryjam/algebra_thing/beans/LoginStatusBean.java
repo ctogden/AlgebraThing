@@ -1,6 +1,8 @@
 package com.jazzberryjam.algebra_thing.beans;
 
-public class LoginStatusBean {
+import java.io.Serializable;
+
+public class LoginStatusBean implements Serializable {
 	private boolean loggedIn;
 	private String username;
 	private String pword;

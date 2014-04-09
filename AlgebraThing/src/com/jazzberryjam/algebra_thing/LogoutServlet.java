@@ -2,6 +2,7 @@ package com.jazzberryjam.algebra_thing;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,18 +28,18 @@ public class LogoutServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-    	ServletContext context = getServletContext();
-        LoginStatusBean loginStatus = (LoginStatusBean) context.getAttribute("loginStatusBean");
-        UserDataBean userDataBean = (UserDataBean) context.getAttribute("userDataBean");
+    	HttpSession session = request.getSession(true);
+    	LoginStatusBean loginStatus = (LoginStatusBean) session.getAttribute("loginStatusBean");
+        UserDataBean userDataBean = (UserDataBean) session.getAttribute("userDataBean");
         
         if(loginStatus == null) {
         	loginStatus = new LoginStatusBean();
-        	context.setAttribute("loginStatusBean", loginStatus);
+        	session.setAttribute("loginStatusBean", loginStatus);
         }
         
         if(userDataBean == null) {
         	userDataBean = new UserDataBean();
-        	context.setAttribute("userDataBean", userDataBean);
+        	session.setAttribute("userDataBean", userDataBean);
         }
         
         loginStatus.setLoggedIn(false);
@@ -49,12 +50,13 @@ public class LogoutServlet extends HttpServlet {
         userDataBean.setEmail(null);
         userDataBean.setUsername(null);
         userDataBean.setUserType(null);
-        HttpSession session = request.getSession(false);
+        
         if(session != null) {
         	session.invalidate();
         }
         
-        response.sendRedirect("AlgebraThing.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("AlgebraThing.jsp");
+    	dispatcher.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
