@@ -13,6 +13,7 @@
 
 <!-- External Scripts -->
 <script type='text/javascript' src='scripts/angular.min.js'></script>
+<script type='text/javascript' src='scripts/angular-bootstrap.min.js'></script>
 <script type='text/javascript' src='scripts/angular-route.min.js'></script>
 <script type='text/javascript' src='scripts/jquery.min.js'></script>
 <script type='text/javascript' src='scripts/bootstrap.min.js'></script>

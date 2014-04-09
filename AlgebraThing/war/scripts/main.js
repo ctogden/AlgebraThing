@@ -4,22 +4,8 @@ $(function(){
         // On loading the initial page, it also loads the modal
 		$(window).load(function(){
 		        $('#welcome').modal('show');
-		        $('#function_bar').hide();
+		        
 		    });
-		 
-		// Popover for Equation Help
-		$('#equation_help').popover({
-	 		trigger: 'click',
-		    placement: 'right',
-		    title: 'Help'
-	 	});
-		
-		// Popover for more operations
-		$('#more_functions').popover({
-	 		trigger: 'click',
-		    placement: 'right'
-	 	});
-		
 });
 (function () {
 	"use strict";
@@ -44,7 +30,7 @@ $(function(){
 	                    });
 	
 	var equations = [];
-	var equationEditorControllers = angular.module('equationEditorControllers', []);
+	var equationEditorControllers = angular.module('equationEditorControllers', [['ui.bootstrap']]);
 	equationEditorControllers.controller('NewEquationCtrl', function NewEquationCtrl($scope, $location) {
 		$scope.submitEquation = function()
 		{
