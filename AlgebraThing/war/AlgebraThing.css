@@ -50,12 +50,12 @@ html,body {
 	color: white;
 }
 
-#logout_link {
+.logout_link {
 	line-height: 50px;
 	margin-left: 10px;
 }
 
-#logout_link:hover {
+.logout_link:hover {
 	text-decoration: none;
 }
 
@@ -180,7 +180,7 @@ html,body {
 	display: block;
 }
 
-#login_button {
+.login_button {
 	width: 200px;
 	height: 30px;
 	margin: 0 auto;
@@ -248,7 +248,7 @@ html,body {
 	box-shadow: 2px 2px 3px 1px #ccc;
 }
 
-#register_button {
+.register_button {
 	width: 200px;
 	height: 30px;
 	margin: 0 auto;

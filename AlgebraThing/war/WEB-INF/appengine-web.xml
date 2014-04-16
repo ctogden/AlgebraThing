@@ -23,7 +23,7 @@
   <system-properties>
     <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
   </system-properties>
-<!--  
+ 
   <sessions-enabled>true</sessions-enabled>
-  <async-session-persistence enabled="true" /> -->
+  <async-session-persistence enabled="false" />
 </appengine-web-app>
