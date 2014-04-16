@@ -50,12 +50,12 @@ html,body {
 	color: white;
 }
 
-#logout_link {
+.logout_link {
 	line-height: 50px;
 	margin-left: 10px;
 }
 
-#logout_link:hover {
+.logout_link:hover {
 	text-decoration: none;
 }
 
@@ -83,9 +83,26 @@ html,body {
 #equation_display {
 	position: relative;
 	top: 330px;
-	right: 320px;
+	right: 620px;
 	direction: rtl;
 	font-size: 24px;
+}
+
+#operator_display_side1{
+	position: absolute;
+	top: 35px;
+	right: 135px;
+	font-size: 24px;
+	color: #47008d;
+}
+
+#operator_display_side2{
+	position: absolute;
+	top: 35px;
+	right: -28px;
+	font-size: 24px;
+	color: #47008d;
+	
 }
 
 #equation_input {
@@ -163,7 +180,7 @@ html,body {
 	display: block;
 }
 
-#login_button {
+.login_button {
 	width: 200px;
 	height: 30px;
 	margin: 0 auto;
@@ -231,10 +248,11 @@ html,body {
 	box-shadow: 2px 2px 3px 1px #ccc;
 }
 
-#register_button {
+.register_button {
 	width: 200px;
 	height: 30px;
 	margin: 0 auto;
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
