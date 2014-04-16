@@ -9,6 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link type="text/css" rel="stylesheet" href="AlgebraThing.css">
 <link type="text/css" rel="stylesheet" href="bootstrap.css">
+<link type="text/css" rel="stylesheet" href="mathquill.css">
 
 
 <!-- External Scripts -->
@@ -17,6 +18,7 @@
 <script type='text/javascript' src='scripts/angular-route.min.js'></script>
 <script type='text/javascript' src='scripts/jquery.min.js'></script>
 <script type='text/javascript' src='scripts/bootstrap.min.js'></script>
+<script type='text/javascript' src='scripts/mathquill.min.js'></script>
 <script type='text/javascript' src='scripts/main.js'></script>
 </head>
 <body>
