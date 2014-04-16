@@ -24,6 +24,18 @@ $(function(){
 	                          templateUrl: 'partials/EquationEditor.html',
 	                          controller: 'EquationEditorCtrl'
 	                        }).
+	                        when('/profile', {
+	                          templateUrl: '/Profile.html',
+		                      controller: 'ProfileCtrl'
+	                        }).
+	                        when('/faq', {
+		                          templateUrl: '/FAQ.html',
+			                      controller: 'FAQCtrl'
+		                    }).
+		                    when('/contact', {
+		                          templateUrl: '/Contact.html',
+			                      controller: 'ContactCtrl'
+		                    }).
 	                        otherwise({
 	                          redirectTo: '/new'
 	                        });
@@ -69,4 +81,18 @@ $(function(){
 	        	$scope.operator = "\u00F7";	 	
 	    };
 	});
+	
+	equationEditorControllers.controller("ProfileCtrl", function ProfileCtrl($scope) {
+		// Profile Content goes here
+	});
+	
+	equationEditorControllers.controller("FAQCtrl", function ProfileCtrl($scope) {
+		$scope.message = 'Look! I am an FAQ page.';
+	});
+	
+	equationEditorControllers.controller("ContactCtrl", function ProfileCtrl($scope) {
+		$scope.message = 'Look! I am an Contact page.';
+	});
+	
+	
 })();

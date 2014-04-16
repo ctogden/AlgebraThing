@@ -276,3 +276,73 @@ html,body {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
+#profile_content {
+	margin-top: 80px;
+	margin-left:140px;
+}
+
+.gravatar {
+	position: relative;
+	margin-top: 20px;
+	height: 120px;
+	width: 120px;
+	left: 80px;
+}
+
+#profile_name {
+	position: relative;
+	top: -110px;
+	left: 220px;
+	font-weight: bold;
+}
+
+#profile_details {
+	position: relative;
+	left: 0px;
+	top: 0px;
+}
+
+#faq_content {
+	margin-top: 80px;
+	margin-left:140px;
+}
+
+#contact_content {
+	margin-top: 80px;
+	margin-left:140px;
+}
+
+#saved_equations {
+	margin-top: 80px;
+	margin-left: 20px;
+	position: relative;
+	left:540px;
+	top: -340px;
+	
+}
+
+#savedEquations_label {
+	position: relative;
+	margin-top: 5px;
+	left: 100px;
+	background-color: #47008d;
+	color: white;
+	width: 205px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	font-size: 24px;
+}
+
+#lastWorked_label {
+	position:relative;
+	left: 260px;
+	top: -46px;
+}
+
+#equations_label {
+	position:relative;
+	left: 20px;
+}
