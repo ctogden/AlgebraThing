@@ -29,6 +29,21 @@ $(function(){
 	                        });
 	                    });
 	
+	equationEditorApp.directive('mathOutput',function(){
+		function link(scope, element, attrs) {
+		
+		scope.$watch(attrs.equation, function(value) {
+			element.text(value);
+			element.mathquill();
+	      });
+		} 
+		return {
+			restrict: 'E',
+			link: link,
+		};
+		
+	});
+	
 	var equations = [];
 	var equationEditorControllers = angular.module('equationEditorControllers', ['ui.bootstrap']);
 	equationEditorControllers.controller('NewEquationCtrl', function NewEquationCtrl($scope, $location) {
@@ -40,6 +55,7 @@ $(function(){
 		}
     });
 	
+	
 	equationEditorControllers.controller("EquationEditorCtrl", function EquationEditorCtrl($scope, $routeParams) {
 		$scope.equation = equations[$routeParams.equationId];
 		$scope.setValue = function(val) {
@@ -47,11 +63,11 @@ $(function(){
 	        if(val == 'add')
 	        	$scope.operator = "+";
 	        else if (val == 'subtract')
-	        	$scope.operator = "-";	
+	        	$scope.operator = "\u2212";	
 	        else if (val == 'multiply')
-	        	$scope.operator = "x";	
+	        	$scope.operator = "\u00D7";	
 	        else if (val == 'divide')
-	        	$scope.operator = "/";	 	
+	        	$scope.operator = "\u00F7";	 	
 	    };
 	});
 })();
