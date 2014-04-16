@@ -19,6 +19,7 @@
 		<script type="text/javascript" src="scripts/angular-bootstrap.min.js"></script>
 		<script type="text/javascript" src="scripts/angular-route.min.js"></script>
 		<script type="text/javascript" src="scripts/main.js"></script>
+		<script type="text/javascript" src="scripts/save-eqn.js"></script>
 	</h:head>
 	<h:body>
 		<f:view contentType="text/html">
@@ -82,16 +83,21 @@
 									p:placeholder="Lastname" required="true" />
 								<h:inputText styleClass="login_comp login_text_box" value="#{loginStatusBean.regUsername}" 
 									p:placeholder="Username" required="true" />
-								<h:inputSecret styleClass="login_comp login_text_box" value="#{loginStatusBean.regPword}" 
-									p:placeholder="Password" required="true" />
+								<h:inputSecret id="regPword" styleClass="login_comp login_text_box" value="#{loginStatusBean.regPword}" 
+									p:placeholder="Password" required="true" requiredMessage="You must enter a password.">
+									<f:validator validatorId="passwordEqualityValidator" />
+									<f:attribute name="regConfPword" value="#{regConfPword.submittedValue}" />	
+								</h:inputSecret>
 								<h:inputSecret styleClass="login_comp login_text_box" value="#{loginStatusBean.regConfPword}" 
-									p:placeholder="Confirm Password" required="true" />
-								<h:commandButton styleClass="register_button login_comp button" action="#{loginStatusBean.register}" value="Register" />
+									p:placeholder="Confirm Password" required="true" requiredMessage="You must confirm your password"
+									binding="#{regConfPword}" />
+								<h:commandButton styleClass="register_button login_comp button" 
+									action="#{loginStatusBean.register}" value="Register" />
 							</h:form>
 						</div></li>
 				</h:panelGroup>
 				<h:panelGroup rendered="#{loginStatusBean.loggedIn}">
-					<li><a class="save_link" href="#save">Save</a></li>
+					<li onclick="saveEquation();"><a class="save_link" href="#save">Save</a></li>
 					<li><a class="profile_link" href="#profile">My Profile</a></li>
 					<li>
 						<h:form id="logout_form">

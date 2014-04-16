@@ -191,7 +191,8 @@ html,body {
 	position: absolute;
 	width: 220px;
 	height: auto;
-	left: -70px;
+	left: 130px;
+	top: 50px;
 	background: #fff;
 	border: 1px solid #47008d;
 	box-shadow: 2px 2px 3px 1px #ccc;
@@ -263,7 +264,8 @@ html,body {
 	position: absolute;
 	width: 220px;
 	height: auto;
-	left: -70px;
+	left: 130px;
+	top: 50px;
 	background: #fff;
 	border: 1px solid #47008d;
 	box-shadow: 2px 2px 3px 1px #ccc;
