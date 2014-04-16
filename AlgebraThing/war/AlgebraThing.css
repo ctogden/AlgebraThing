@@ -50,9 +50,30 @@ html,body {
 	color: white;
 }
 
+.newEquation_link{
+	line-height: 50px;
+	left: 320px;
+}
+
+.save_link {
+	line-height: 50px;
+	left: 440px;
+}
+
 .logout_link {
 	line-height: 50px;
-	margin-left: 10px;
+	position: fixed;
+	right: 340px;
+}
+
+.profile_link {
+	line-height: 50px;
+	right: 400px;	
+}
+
+.welcome_header {
+	line-height: 50px;
+	right: 500px;
 }
 
 .logout_link:hover {
@@ -255,4 +276,3 @@ html,body {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
-

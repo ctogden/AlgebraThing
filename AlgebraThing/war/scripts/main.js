@@ -2,10 +2,10 @@
 $(function(){
 		
         // On loading the initial page, it also loads the modal
-		$(window).load(function(){
-		        $('#welcome').modal('show');
-		        
-		    });
+//		$(window).load(function(){
+//		        $('#welcome').modal('show');
+//		        
+//		    });
 });
 (function () {
 	"use strict";
@@ -59,7 +59,6 @@ $(function(){
 	equationEditorControllers.controller("EquationEditorCtrl", function EquationEditorCtrl($scope, $routeParams) {
 		$scope.equation = equations[$routeParams.equationId];
 		$scope.setValue = function(val) {
-	        console.log("here ",val);
 	        if(val == 'add')
 	        	$scope.operator = "+";
 	        else if (val == 'subtract')
