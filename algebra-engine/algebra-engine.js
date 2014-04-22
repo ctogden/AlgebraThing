@@ -4,7 +4,6 @@
 var infixToPostfix = function(expression){
     // TODO - add support for multi digit numbers, more operators, and parentheses
     var postfix = [];
-    var operators = ["+", "-", "*", "/"];
     // use an array as a stack
     var stack = [];
     for(var count = 0; count < expression.length; count++){
@@ -14,7 +13,7 @@ var infixToPostfix = function(expression){
         if(!isNaN(char) || char.match(/[a-z]/i)){
             postfix.push(char);
         }
-        else if(operators.indexOf(char) != -1){
+        else if(isOperator(char)){
             var popped;
             while(stack.length > 0){
                 popped = stack.pop();
@@ -41,6 +40,11 @@ var infixToPostfix = function(expression){
     return postfix;
 };
 
+var isOperator = function(char){
+    var operators = ["+", "-", "*", "/"];
+    return (operators.indexOf(char) != -1);
+};
+
 var precedence = function(operator){
     if(operator === "+" || operator === "-"){ return 1; }
     else if(operator === "*" || operator === "/"){ return 2; }
@@ -56,6 +60,11 @@ var isLeftAssociative = function(operator){
 *  Takes a postfix (Reverse Polish Notation) expression and combines like terms
 */
 var simplifyOperands = function(rpnExpressionArray){
+    // First move any variables as far to the right as possible
+    // We can do this across subsequent additions and/or subtractions, or 
+    // multiplications, but not divisions
+// TODO    rpnExpressionArray = shiftVariables(rpnExpressionArray);
+  
     // Scan from left to right.
     // If two numbers followed by an operator, substitute result and step
     // position back to that substituted value. If either operand is a 
@@ -96,6 +105,31 @@ var simplifyOperands = function(rpnExpressionArray){
     // accounted for associativity.
 };
 
+
+// TODO complete this method
+/*
+*  Shift variables as far right as possible to allow for further 
+*  combinations of like expressions
+*/
+var shiftVariables = function (rpnExpressionArray){
+    // Move any variables as far to the right as possible
+    // We can do this across subsequent additions and/or subtractions, or 
+    // multiplications, but not divisions
+    for(var i = 0; i < rpnExpressionArray.length; i++){
+        if(rpnExpression[i].match(/[a-z]/i)){
+            if(!isNaN(rpnExpression[i+1])){
+                var temp = rpnExpression[i];
+                rpnExpression[i] = rpnExpression[i+1];
+                rpnExpression[i+1] = temp;
+            }
+        }
+        else if(isOperator(rpnExpression[i])){
+            
+        }
+    }
+    
+};
+
 var substituteInPostfixArray = function(array, count, substitution){
     var newArray = [];
     for(var i = 0; i < count; i++){
@@ -115,7 +149,6 @@ var toSimplifiedPostfix = function(infixExpression){
 
 function DoMath(rpnExpressionArray){
     this.expression = rpnExpressionArray;
-    console.log(this.expression);
 }
 
 DoMath.prototype.add = function(value){
@@ -142,15 +175,12 @@ DoMath.prototype.divide = function(value){
     return simplifyOperands(this.expression);
 };
 
+/** Here we just print out some tests.  Remove later **/
+
 console.log("---");
-var s = "2+2-3*n-5+6+7";  // Expect 12+3n*-5-6+7+
-console.log(toSimplifiedPostfix(s));
-
-console.log(simplifyOperands([2, 2, "*", 2, 13, "*", "*", 3, 4, "-", "/", 1, "+"]));
-
+console.log(simplifyOperands("2n*3*3*")); // TODO - fix me, I should output an array...
+console.log(simplifyOperands("2n*33**"));
 var doMath = new DoMath(toSimplifiedPostfix("3*n*3"));
 console.log(doMath.subtract(7));
 console.log(doMath.add(4));
 console.log(doMath.divide(129));
-
-
