@@ -16,6 +16,7 @@
 		tree = startingValue;
 		for (var i=0; i<opVals.length; i++) {
 			tree = {
+				type: "binop", 
 				left: tree,
 				operator: opVals[i].operator,
 				right: opVals[i].value
@@ -26,7 +27,6 @@
 	
 	function operatorValue(array) {
 		return {
-			type: "binop", 
 			operator: array[0],
 			value: array[1]
 		}
@@ -34,7 +34,8 @@
 	
 	function getParenObject(value){
 		return {
-			type: "paren" 
+			type: "paren" ,
+			value : value
 		};
 	}
 	

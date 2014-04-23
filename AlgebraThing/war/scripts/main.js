@@ -41,12 +41,61 @@ $(function(){
 	                        });
 	                    });
 	
+	function realOp(operator){
+		if(operator ==="*"){
+			return "\\times"
+		}
+		
+		return operator; 
+		
+	}
+	
+	function latexGenerator(tree){
+		if(tree == null){
+			return ""; 
+		}
+		
+		else if(! isNaN(tree) || typeof(tree) === "string"){
+			return tree; 
+		}
+		
+		else if(tree.type === "paren"){
+			if(tree.value.operator === "/"){
+				return latexGenerator(tree.value); 
+			}
+			else {
+				return "{" + latexGenerator(tree.value) + "}";
+			}
+			
+		}
+		else if(tree.type === "binop"){
+			if(tree.operator === "/"){
+				return "\\frac{" + latexGenerator(tree.left) + "}{" + latexGenerator(tree.right) + "}"; 
+			}
+			else if(tree.operator === "^"){
+				return latexGenerator(tree.left) + "^{" + latexGenerator(tree.right) + "}"; 
+			}
+			else {
+				return latexGenerator(tree.left) + realOp(tree.operator) + latexGenerator(tree.right);
+			}
+		}
+	}
+	
 	equationEditorApp.directive('mathOutput',function(){
 		function link(scope, element, attrs) {
 		
 		scope.$watch(attrs.equation, function(value) {
-			element.text(value);
-			element.mathquill();
+			if(value == null) {
+				return; 
+			}
+			var parseResult = window.parser.parse(value);
+			if(parseResult.status == true){
+				element.text(latexGenerator(parseResult.value));
+				element.mathquill();
+			}
+			else {
+				element.text("invalid equation"); 
+			}
 	      });
 		} 
 		return {
