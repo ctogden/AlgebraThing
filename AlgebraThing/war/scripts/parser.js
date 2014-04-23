@@ -34,7 +34,7 @@
 	
 	function getParenObject(value){
 		return {
-			type : "paren" 
+			type: "paren" 
 		};
 	}
 	
@@ -43,6 +43,7 @@
 	
 	var plusminus = lexeme(string("+").or(string("-"))); 
 	var multdiv = lexeme(string("*").or(string("/"))); 
+	var exponent = lexeme(string("^")); 
 	var number = lexeme(regex(/[0-9]+/).map(parseInt)); 
 	var id = lexeme(regex(/[a-z_]\w*/i)); 
 	
@@ -50,7 +51,15 @@
 	var parenexpr = atom.or(lparen.then(lazy(function() {
 		return expr;
 	}).map(getParenObject)).skip(rparen)); 
-	var multdivexpr = seq(parenexpr,seq(multdiv,parenexpr).map(operatorValue).many()).map(treeFromArray);  
+	var expexpr = seq(parenexpr, exponent, parenexpr).map(function(array){
+		return{
+			type: "binop",  
+			left: array[0], 
+			operator: array[1],
+			right: array[2]
+		};
+	}).or(parenexpr); 
+	var multdivexpr = seq(expexpr,seq(multdiv,expexpr).map(operatorValue).many()).map(treeFromArray);  
 	var expr = seq(multdivexpr,seq(plusminus,multdivexpr).map(operatorValue).many()).map(treeFromArray);  
 	
 	window.parser=expr; 
