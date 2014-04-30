@@ -80,6 +80,7 @@
   line-height: 1;
   display: -moz-inline-box;
   display: inline-block;
+  padding: 5px;
 }
 .mathquill-rendered-math .non-leaf,
 .mathquill-rendered-math .scaled {

@@ -103,7 +103,7 @@ html,body {
 
 #equation_display {
 	position: relative;
-	top: 330px;
+	top: 300px;
 	right: 620px;
 	text-align: right; 
 	font-size: 24px;
@@ -111,7 +111,7 @@ html,body {
 
 #operator_display_side1{
 	position: absolute;
-	top: 35px;
+	top: 40px;
 	right: 135px;
 	font-size: 24px;
 	color: #47008d;
@@ -119,7 +119,7 @@ html,body {
 
 #operator_display_side2{
 	position: absolute;
-	top: 35px;
+	top: 40px;
 	right: -28px;
 	font-size: 24px;
 	color: #47008d;
@@ -176,6 +176,46 @@ html,body {
 	position: absolute;
 	top: 400px;
 	left: 580px;
+}
+
+#text_box {
+	position: absolute;
+	width: 350px;
+	top: 400px;
+	left: 550px;
+	border: 2px solid grey;
+	height: 50px;
+	padding: 5px;
+}
+
+#input_box:focus {
+	outline: 0;
+}
+
+#input_box {
+	border: none;
+	width: 340px;
+	height: 40px;
+	font-size: 20px;
+}
+
+#go_button_1 {
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	bottom: 5px;
+	border-radius: 0;
+	background-color: #47008d;
+	border: none;
+	color: white;
+	font-size: 16pt;
+}
+
+#radio_buttons {
+	position:absolute;
+	top: 460px;
+	left: 580px;
+	
 }
 
 #more_functions {
@@ -348,3 +388,4 @@ html,body {
 	position:relative;
 	left: 20px;
 }
+

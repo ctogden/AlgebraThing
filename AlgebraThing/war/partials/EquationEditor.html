@@ -1,16 +1,28 @@
 <div id="equation_display">
-	<div id="operator_display">
-		<span id='operator_display_side1'>{{ operator }}</span> 
-		<span id='operator_display_side2'>{{ operator }}</span>
-	</div>
 	<math-output equation="equation"></math-output>
+	<div class="operator_display">
+		<span id='operator_display_side1'>{{ operator }} {{newSecondaryInput}}</span> 
+		<span id='operator_display_side2'>{{ operator }} {{newSecondaryInput}}</span>
+	</div>
+	
 </div>
 
-<div id="function_bar">
+<div data-ng-hide="display" id="function_bar">
 	<button ng-click="setValue('add')"      id="add_function" type="button" class="btn btn-functions">+</button>
 	<button ng-click="setValue('subtract')" id="subtract_function" type="button" class="btn btn-functions">&#x2212;</button>
 	<button ng-click="setValue('multiply')" id="multiply_function" type="button" class="btn btn-functions">&#x00D7;</button>
 	<button ng-click="setValue('divide')"   id="divide_function" type="button" class="btn btn-functions">&#x00F7;</button>
 	<a id="more_functions" popover-title="Functions" popover-placement="right" popover="Content here..." popover-trigger="click">
 		More operations </a>
+</div>
+
+<div data-ng-show="display" id="text_box">
+	<input type="text" id="input_box" data-ng-model="newSecondaryInput">
+	
+	<button data-ng-click="submitSecondaryInput()" id="go_button_1">Go</button>
+</div>
+
+<div id="radio_buttons" class="btn-group" >
+  <button type="button" data-ng-click="toggle('Functions')" class="btn btn-primary">Functions</button>
+  <button type="button" data-ng-click="toggle('Input')" class="btn btn-primary">Input</button>
 </div>
