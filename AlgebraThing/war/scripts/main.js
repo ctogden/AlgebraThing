@@ -136,11 +136,11 @@ $(function(){
 	});
 	
 	equationEditorControllers.controller("FAQCtrl", function ProfileCtrl($scope) {
-		$scope.message = 'Look! I am an FAQ page.';
+		// FAQ Content
 	});
 	
 	equationEditorControllers.controller("ContactCtrl", function ProfileCtrl($scope) {
-		$scope.message = 'Look! I am an Contact page.';
+		// Contact Page
 	});
 	
 	
