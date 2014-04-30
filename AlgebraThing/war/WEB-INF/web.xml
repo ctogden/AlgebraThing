@@ -56,11 +56,6 @@
 		<servlet-class>com.jazzberryjam.algebra_thing.AlgebraThing</servlet-class>
 	</servlet>
 
-	<servlet-mapping>
-		<servlet-name>greetServlet</servlet-name>
-		<url-pattern>/test</url-pattern>
-	</servlet-mapping>
-
 	<servlet>
 	    <servlet-name>SaveEquationServlet</servlet-name>
 	    <servlet-class>com.jazzberryjam.algebra_thing.SaveEquationServlet</servlet-class>
