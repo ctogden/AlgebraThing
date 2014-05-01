@@ -119,6 +119,7 @@ $(function(){
 	
 	equationEditorControllers.controller("EquationEditorCtrl", function EquationEditorCtrl($scope, $routeParams) {
 		$scope.equation = equations[$routeParams.equationId];
+		$scope.secondaryInput = [];
 		$scope.setValue = function(val) {
 	        if(val == 'add')
 	        	$scope.operator = "+";
@@ -129,7 +130,31 @@ $(function(){
 	        else if (val == 'divide')
 	        	$scope.operator = "\u00F7";	 	
 	    };
+	    $scope.toggle = function(val){
+	    	if(val == 'Functions'){
+	    		
+	    		$scope.display = false;
+	    	    
+	    	} else {
+	    		
+	    		$scope.display = true;
+	    	}	
+	    };
+	    
+	    $scope.submitSecondaryInput = function()
+		{
+			secondaryInput.push($scope.newSecondaryInput);
+			$scope.newSecondaryInput = "";
+	 
+		}
 	});
+	
+//	angular.module('equationEditorApp', []).directive('display', function() {
+//	    return function (scope, element, attrs) {
+//	    	var top -= 10;
+//	        element.css('top' + top + 'px');
+//	    }
+//	});
 	
 	equationEditorControllers.controller("ProfileCtrl", function ProfileCtrl($scope) {
 		// Profile Content goes here
