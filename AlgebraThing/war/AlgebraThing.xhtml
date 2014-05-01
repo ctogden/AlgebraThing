@@ -7,120 +7,136 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
-	<h:head>
-		<link type="text/css" rel="stylesheet" href="bootstrap.css" />
-		<link type="text/css" rel="stylesheet" href="mathquill.css" /> 
-		<link type="text/css" rel="stylesheet" href="AlgebraThing.css" />
-		<!-- External Scripts -->
-		<script type="text/javascript" src="scripts/jquery.min.js"></script>
-		<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
-		<script type="text/javascript" src="scripts/mathquill.min.js"></script>
-		<script type="text/javascript" src="scripts/parsimmon.browser.js"></script>
-		<script type="text/javascript" src="scripts/angular.min.js"></script>
-		<script type="text/javascript" src="scripts/angular-bootstrap.min.js"></script>
-		<script type="text/javascript" src="scripts/angular-route.min.js"></script>
-		<script type="text/javascript" src="scripts/save-eqn.js"></script>
-		<script type="text/javascript" src="scripts/parser.js"></script>
-		<script type="text/javascript" src="scripts/main.js"></script>
-		
-		
-	</h:head>
-	<h:body>
-		<f:view contentType="text/html">
-			<div class="modal fade" id="welcome" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel">Algebra Thing</h4>
-				</div>
-				<div class="modal-body">
-					The best way to practice algebra.
-					<p>More content goes here...</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Let's
-						Practice Algebra!</button>
+<h:head>
+	<link type="text/css" rel="stylesheet" href="bootstrap.css" />
+	<link type="text/css" rel="stylesheet" href="mathquill.css" />
+	<link type="text/css" rel="stylesheet" href="AlgebraThing.css" />
+	<!-- External Scripts -->
+	<script type="text/javascript" src="scripts/jquery.min.js"></script>
+	<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+	<script type="text/javascript" src="scripts/mathquill.min.js"></script>
+	<script type="text/javascript" src="scripts/parsimmon.browser.js"></script>
+	<script type="text/javascript" src="scripts/angular.min.js"></script>
+	<script type="text/javascript" src="scripts/angular-bootstrap.min.js"></script>
+	<script type="text/javascript" src="scripts/angular-route.min.js"></script>
+	<script type="text/javascript" src="scripts/save-eqn.js"></script>
+	<script type="text/javascript" src="scripts/parser.js"></script>
+	<script type="text/javascript" src="scripts/main.js"></script>
+
+
+</h:head>
+<h:body>
+
+	<f:view contentType="text/html">
+		<div class="modal fade" id="welcome" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">Algebra Thing</h4>
+					</div>
+					<div class="modal-body">
+						The best way to practice algebra.
+						<p>More content goes here...</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Let's
+							Practice Algebra!</button>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<header id="navbar" class="navbar navbar-inverse navbar-fixed-top"
-		role="navigation">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">AlgebraThing</a>
+		<header id="navbar" class="navbar navbar-inverse navbar-fixed-top"
+			role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">AlgebraThing</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<h:panelGroup rendered="#{loginStatusBean.loggedIn}">
+						<li><a class="welcome_header" href="#username">Hello <h:outputText
+									value="#{loginStatusBean.firstname}" /></a></li>
+					</h:panelGroup>
+					<li class="active"><a class="newEquation_link" href="#">New
+							Equation</a></li>
+					<h:panelGroup rendered="#{!loginStatusBean.loggedIn}">
+						<li><a class="save_link" href="#save"
+							onclick="$('#login_container').fadeToggle();$('#register_container').fadeOut();">Save</a>
+							<div id="login_container">
+								<h:form id="login_form">
+									<h:inputText id="username"
+										styleClass="login_comp login_text_box"
+										value="#{loginStatusBean.username}" p:placeholder="Username"
+										required="true" />
+									<h:inputSecret id="pword"
+										styleClass="login_comp login_text_box"
+										value="#{loginStatusBean.pword}" p:placeholder="Password"
+										required="true" />
+									<h:commandButton styleClass="login_button login_comp button"
+										action="#{loginStatusBean.login}" value="Login" />
+								</h:form>
+								<input id="open_registration_button" class="button"
+									type="button" value="Register"
+									onclick="$('#login_container').fadeToggle();$('#register_container').fadeToggle();" />
+							</div>
+							<div id="register_container">
+								<h:form id="register_form">
+									<h:inputText styleClass="login_comp login_text_box"
+										value="#{loginStatusBean.firstname}" p:placeholder="Firstname"
+										required="true" />
+									<h:inputText styleClass="login_comp login_text_box"
+										value="#{loginStatusBean.lastname}" p:placeholder="Lastname"
+										required="true" />
+									<h:inputText styleClass="login_comp login_text_box"
+										value="#{loginStatusBean.regUsername}"
+										p:placeholder="Username" required="true" />
+									<h:inputSecret id="regPword"
+										styleClass="login_comp login_text_box"
+										value="#{loginStatusBean.regPword}" p:placeholder="Password"
+										required="true" requiredMessage="You must enter a password.">
+										<f:validator validatorId="passwordEqualityValidator" />
+										<f:attribute name="regConfPword"
+											value="#{regConfPword.submittedValue}" />
+									</h:inputSecret>
+									<h:inputSecret styleClass="login_comp login_text_box"
+										value="#{loginStatusBean.regConfPword}"
+										p:placeholder="Confirm Password" required="true"
+										requiredMessage="You must confirm your password"
+										binding="#{regConfPword}" />
+									<h:commandButton styleClass="register_button login_comp button"
+										action="#{loginStatusBean.register}" value="Register" />
+								</h:form>
+							</div></li>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{loginStatusBean.loggedIn}">
+						<li onclick="saveEquation();"><a class="save_link"
+							href="#save">Save</a></li>
+						<li><a class="profile_link" href="#profile">My Profile</a></li>
+						<li><h:form id="logout_form">
+								<h:commandLink styleClass="logout_link"
+									action="#{loginStatusBean.logout}" value="Logout" />
+							</h:form></li>
+					</h:panelGroup>
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
 		</div>
-		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<h:panelGroup rendered="#{loginStatusBean.loggedIn}">
-					<li><a class="welcome_header" href="#username">Hello <h:outputText value="#{loginStatusBean.firstname}" /></a></li>
-				</h:panelGroup>
-				<li class="active"><a class="newEquation_link" href="#">New Equation</a></li>
-				<h:panelGroup rendered="#{!loginStatusBean.loggedIn}">
-					<li><a class="save_link" href="#save"
-						onclick="$('#login_container').fadeToggle();$('#register_container').fadeOut();">Save</a>
-						<div id="login_container">
-							<h:form id="login_form">
-								<h:inputText id="username" styleClass="login_comp login_text_box" 
-								value="#{loginStatusBean.username}" p:placeholder="Username" required="true" />
-								<h:inputSecret id="pword" styleClass="login_comp login_text_box" 
-								value="#{loginStatusBean.pword}" p:placeholder="Password" required="true" />
-								<h:commandButton styleClass="login_button login_comp button" action="#{loginStatusBean.login}" value="Login" />
-							</h:form>
-							<input id="open_registration_button" class="button" type="button"
-								value="Register"
-								onclick="$('#login_container').fadeToggle();$('#register_container').fadeToggle();" />
-						</div>
-						<div id="register_container">
-							<h:form id="register_form">
-								<h:inputText styleClass="login_comp login_text_box" value="#{loginStatusBean.firstname}" 
-									p:placeholder="Firstname" required="true" />
-								<h:inputText styleClass="login_comp login_text_box" value="#{loginStatusBean.lastname}" 
-									p:placeholder="Lastname" required="true" />
-								<h:inputText styleClass="login_comp login_text_box" value="#{loginStatusBean.regUsername}" 
-									p:placeholder="Username" required="true" />
-								<h:inputSecret id="regPword" styleClass="login_comp login_text_box" value="#{loginStatusBean.regPword}" 
-									p:placeholder="Password" required="true" requiredMessage="You must enter a password.">
-									<f:validator validatorId="passwordEqualityValidator" />
-									<f:attribute name="regConfPword" value="#{regConfPword.submittedValue}" />	
-								</h:inputSecret>
-								<h:inputSecret styleClass="login_comp login_text_box" value="#{loginStatusBean.regConfPword}" 
-									p:placeholder="Confirm Password" required="true" requiredMessage="You must confirm your password"
-									binding="#{regConfPword}" />
-								<h:commandButton styleClass="register_button login_comp button" 
-									action="#{loginStatusBean.register}" value="Register" />
-							</h:form>
-						</div></li>
-				</h:panelGroup>
-				<h:panelGroup rendered="#{loginStatusBean.loggedIn}">
-					<li onclick="saveEquation();"><a class="save_link" href="#save">Save</a></li>
-					<li><a class="profile_link" href="#profile">My Profile</a></li>
-					<li>
-						<h:form id="logout_form">
-							<h:commandLink styleClass="logout_link" action="#{loginStatusBean.logout}" value="Logout" />
-						</h:form>
-					</li>
-				</h:panelGroup>
-			</ul>
-		</div>
-		<!--/.nav-collapse -->
-	</div>
-	</header>
-	<div id="main_content" data-ng-view="true"></div>
+		</header>
+		<div id="main_content" data-ng-view="true"></div>
 
-	<!-- Footer -->
-	<div id="footer">
-		<div id="copyright">© JJ Enterprises</div>
-		<a id="faq" href="#faq">FAQ</a> <a id="contact" href="#contact">Contact</a>
-	</div>
-		</f:view>
-	</h:body>
+		<!-- Footer -->
+		<div id="footer">
+			<div id="copyright">© JJ Enterprises</div>
+			<a id="faq" href="#faq">FAQ</a> <a id="contact" href="#contact">Contact</a>
+		</div>
+	</f:view>
+</h:body>
 </html>

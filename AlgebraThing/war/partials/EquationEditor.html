@@ -1,16 +1,29 @@
-<div id="equation_display">
-	<div id="operator_display">
-		<span id='operator_display_side1'>{{ operator }}</span> 
-		<span id='operator_display_side2'>{{ operator }}</span>
-	</div>
-	<math-output equation="equation"></math-output>
-</div>
 
-<div id="function_bar">
-	<button ng-click="setValue('add')"      id="add_function" type="button" class="btn btn-functions">+</button>
-	<button ng-click="setValue('subtract')" id="subtract_function" type="button" class="btn btn-functions">&#x2212;</button>
-	<button ng-click="setValue('multiply')" id="multiply_function" type="button" class="btn btn-functions">&#x00D7;</button>
-	<button ng-click="setValue('divide')"   id="divide_function" type="button" class="btn btn-functions">&#x00F7;</button>
-	<a id="more_functions" popover-title="Functions" popover-placement="right" popover="Content here..." popover-trigger="click">
-		More operations </a>
+<div id="big_equation_container">
+	<div id="equation_bottom_container">
+		<div id="equation_display">
+			<div id="operator_display">
+				<span id='operator_display_side1'>{{ operator }}</span> <span
+					id='operator_display_side2'>{{ operator }}</span>
+			</div>
+			<math-output equation="equation"></math-output>
+		</div>
+	
+		<div id="function_bar">
+			<button ng-click="setValue('add')" id="add_function" type="button"
+				class="btn btn-functions">+</button>
+			<button ng-click="setValue('subtract')" id="subtract_function"
+				type="button" class="btn btn-functions">&#x2212;</button>
+			<button ng-click="setValue('multiply')" id="multiply_function"
+				type="button" class="btn btn-functions">&#x00D7;</button>
+			<button ng-click="setValue('divide')" id="divide_function"
+				type="button" class="btn btn-functions">&#x00F7;</button>
+			
+		</div>
+		<a id="more_functions" popover-title="Functions"
+				popover-placement="right" popover="Content here..."
+				popover-trigger="click"> More operations </a>
+	</div>
+</div>
+<div id="equation_padding">
 </div>
