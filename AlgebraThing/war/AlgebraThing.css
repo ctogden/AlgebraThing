@@ -125,16 +125,13 @@ html,body {
 }
 
 #operator_display_side1{
-	position: absolute;
-	top: 40px;
-	right: 135px;
+	float: left;
 	font-size: 24px;
 	color: #47008d;
 }
 
 #operator_display_side2{
-	top: 35px;
-	right: -28px;
+	float: right;
 	font-size: 24px;
 	color: #47008d;
 	
