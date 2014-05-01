@@ -90,7 +90,7 @@ $(function(){
 			}
 			var parseResult = window.parser.parse(value);
 			if(parseResult.status == true){
-				element.text(latexGenerator(parseResult.value));
+				element.text(latexGenerator(parseResult.value[0]) + "=" + latexGenerator(parseResult.value[1]) );
 				element.mathquill();
 			}
 			else {

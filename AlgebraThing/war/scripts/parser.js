@@ -62,8 +62,8 @@
 	}).or(parenexpr); 
 	var multdivexpr = seq(expexpr,seq(multdiv,expexpr).map(operatorValue).many()).map(treeFromArray);  
 	var expr = seq(multdivexpr,seq(plusminus,multdivexpr).map(operatorValue).many()).map(treeFromArray);  
-	
-	window.parser=expr; 
+	var equality = seq(expr.skip(lexeme(string("="))), expr); 
+	window.parser=equality; 
 	
 })(); 
 
