@@ -9,6 +9,16 @@
     	</lifecycle>
     </application>
     
+    <managed-bean>
+        <managed-bean-name>userDataBean</managed-bean-name>
+        <managed-bean-class>com.jazzberryjam.algebra_thing.beans.UserDataBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>loginStatusBean</property-name>
+            <value>#{loginStatusBean}</value>
+        </managed-property>
+    </managed-bean>
+    
     <validator>
         <validator-id>passwordEqualityValidator</validator-id>
         <validator-class>com.jazzberryjam.algebra_thing.validation.PasswordEqualityValidator</validator-class>

@@ -1,19 +1,34 @@
 <div id="profile_content">
-
+	<script>
+		$('#prof_name_wrapper').text(firstname + " " + lastname);
+		$('#prof_member_since_wrapper').text(formattedDateJoined);
+		$('#prof_equ_solved_wrapper').text(equSolved);
+		$('#prof_equ_saved_wrapper').text(equSaved);
+		</script>
 	<img class="gravatar" src="/images/gravatar.png">
 	
 	<div id="profile_name">
-		<p>Name</p>
+		<p>
+			Name: 
+			<span id="prof_name_wrapper"></span>		
+		</p>
 	</div>
 	
 	<div id="profile_details">
 		
-		<p>Member Since:</p>
+		<p>
+			Member Since:
+			<span id="prof_member_since_wrapper"></span>
+		</p>
 		
-		<p>Equations Solved:</p>
-		<p>Equations Saved:</p>
-		
-		<div id="password_change">Change Password</div>
+		<p>
+			Equations Solved:
+			<span id="prof_equ_solved_wrapper"></span>
+		</p>
+		<p>
+			Equations Saved:
+			<span id="prof_equ_saved_wrapper"></span>
+		</p>
 	</div>
 
 	<div id="saved_equations">

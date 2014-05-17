@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -216,11 +218,13 @@ public class LoginStatusBean implements Serializable {
         }
         
         if(!exists) {
+        	username = regUsername;
         	Entity userLogin = new Entity("user", loginKey);
         	userLogin.setProperty("username", regUsername);
         	userLogin.setProperty("pword", pwordHash);
         	datastore.put(userLogin);
         	
+        	Date date = new Date();
         	Key userDataKey = KeyFactory.createKey("userData", "userData");
         	Entity userData = new Entity("userData", userDataKey);
         	userData.setProperty("username", regUsername);
@@ -228,6 +232,9 @@ public class LoginStatusBean implements Serializable {
         	userData.setProperty("lastname", lastname);
         	userData.setProperty("email", email);
         	userData.setProperty("userType", null);
+        	userData.setProperty("dateJoined", date);
+        	userData.setProperty("equSolved", 0);
+        	userData.setProperty("equSaved", 0);
         	datastore.put(userData);
         	
         	loggedIn = true;

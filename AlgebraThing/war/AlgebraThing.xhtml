@@ -23,10 +23,34 @@
 		<script type="text/javascript" src="scripts/parser.js"></script>
 		<script type="text/javascript" src="scripts/main.js"></script>
 		<script type="text/javascript" src="scripts/algebra-engine.js"></script>
+		<h:outputScript name="jquery/jquery.js" library="primefaces" />
 	</h:head>
 <h:body>
-
 	<f:view contentType="text/html">
+		<h:panelGroup rendered="#{loginStatusBean.loggedIn}">
+			<script>
+				var firstname = '#{userDataBean.firstname}';
+				var lastname = '#{userDataBean.lastname}';
+				var email = '#{userDataBean.email}';
+				var dateJoined = '#{userDataBean.dateJoined.toString()}'.split(" ");
+				var day = parseInt(dateJoined[2])%10;
+				var numEnd;
+				if(day === 1) {
+					numEnd = 'st';
+				} else if(day === 2) {
+					numEnd = 'nd';
+				} else if(day === 3) {
+					numEnd = 'rd';
+				} else {
+					numEnd = 'th';
+				}
+				
+				var formattedDateJoined = dateJoined[1] + " " + dateJoined[2] + numEnd + ", " + dateJoined[5];
+				var equSolved = '#{userDataBean.equSolved}';
+				var equSaved = '#{userDataBean.equSaved}';
+			</script>
+		</h:panelGroup>
+	
 		<div class="modal fade" id="welcome" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
