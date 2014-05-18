@@ -208,6 +208,17 @@ html,body {
 	font-size: 20px;
 }
 
+input.secondary-op {
+	border: none;
+	width: 40px;
+	border-bottom: 1px dotted #47008d;
+}
+
+input.secondary-op.ng-invalid {
+    color:white;
+    background: red;
+  }
+
 #go_button_1 {
 	position: absolute;
 	right: 5px;

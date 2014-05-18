@@ -1,4 +1,4 @@
-//Main script file for the application
+	//Main script file for the application
 $(function(){
 		
         // On loading the initial page, it also loads the modal
@@ -116,10 +116,11 @@ $(function(){
 		}
     });
 	
-	
 	equationEditorControllers.controller("EquationEditorCtrl", function EquationEditorCtrl($scope, $routeParams) {
 		$scope.equation = equations[$routeParams.equationId];
 		$scope.secondaryInput = [];
+		this.inputHidden = false;	// TODO: we'd like to be able to hide this until a operator is selected
+		this.secondaryOp = '';
 		$scope.setValue = function(val) {
 	        if(val == 'add')
 	        	$scope.operator = "+";
@@ -128,7 +129,7 @@ $(function(){
 	        else if (val == 'multiply')
 	        	$scope.operator = "\u00D7";	
 	        else if (val == 'divide')
-	        	$scope.operator = "\u00F7";	 	
+	        	$scope.operator = "\u00F7";	 
 	    };
 	    $scope.toggle = function(val){
 	    	if(val == 'Functions'){
