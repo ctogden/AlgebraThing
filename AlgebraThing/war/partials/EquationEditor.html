@@ -2,10 +2,15 @@
 	<div id="equation_bottom_container">
 		<div id="equation_display">
 			<math-output equation="equation"></math-output>
-			<div class="operator_display clearfix">
-				<span id='operator_display_side1'>{{ operator }}
-					{{newSecondaryInput}}</span> <span id='operator_display_side2'>{{
-					operator }} {{newSecondaryInput}}</span>
+			<div class="operator_display clearfix" ng-controller="EquationEditorCtrl as editor"">
+				<form ng-submit="performOperation()">
+					<span id='operator_display_side1'>{{ operator }}
+						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="editor.secondaryOp" ng-pattern="/^\d+$/" auto-focus>
+					</span>
+					<span id='operator_display_side2'>{{ operator }}
+						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="editor.secondaryOp" ng-pattern="/^\d+$/">
+					</span>
+				</form>
 			</div>
 
 		</div>
@@ -20,22 +25,7 @@
 			<button ng-click="setValue('divide')" id="divide_function"
 				type="button" class="btn btn-functions">&#x00F7;</button>
 		</div>
-		<a id="more_functions" popover-title="Functions"
-				popover-placement="right" popover="Content here..."
-				popover-trigger="click"> More operations </a>
 
-		<div data-ng-show="display" id="text_box">
-			<input type="text" id="input_box" data-ng-model="newSecondaryInput">
-
-			<button data-ng-click="submitSecondaryInput()" id="go_button_1">Go</button>
-		</div>
-
-		<div id="radio_buttons" class="btn-group">
-			<button type="button" data-ng-click="toggle('Functions')"
-				class="btn btn-primary">Functions</button>
-			<button type="button" data-ng-click="toggle('Input')"
-				class="btn btn-primary">Input</button>
-		</div>
 	</div>
 </div>
 <div id="equation_padding"></div>

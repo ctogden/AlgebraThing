@@ -1,4 +1,4 @@
-//Main script file for the application
+	//Main script file for the application
 $(function(){
 		
         // On loading the initial page, it also loads the modal
@@ -81,6 +81,17 @@ $(function(){
 		}
 	}
 	
+	equationEditorApp.directive('autoFocus', function($timeout) {
+	    return {
+	        restrict: 'AC',
+	        link: function(_scope, _element) {
+	            $timeout(function(){
+	                _element[0].focus();
+	            }, 0);
+	        }
+	    };
+	});
+	
 	equationEditorApp.directive('mathOutput',function(){
 		function link(scope, element, attrs) {
 		
@@ -116,10 +127,11 @@ $(function(){
 		}
     });
 	
-	
 	equationEditorControllers.controller("EquationEditorCtrl", function EquationEditorCtrl($scope, $routeParams) {
 		$scope.equation = equations[$routeParams.equationId];
 		$scope.secondaryInput = [];
+		this.inputHidden = false;	// TODO: we'd like to be able to hide this until a operator is selected
+		this.secondaryOp = '';
 		$scope.setValue = function(val) {
 	        if(val == 'add')
 	        	$scope.operator = "+";
@@ -128,7 +140,7 @@ $(function(){
 	        else if (val == 'multiply')
 	        	$scope.operator = "\u00D7";	
 	        else if (val == 'divide')
-	        	$scope.operator = "\u00F7";	 	
+	        	$scope.operator = "\u00F7";	 
 	    };
 	    $scope.toggle = function(val){
 	    	if(val == 'Functions'){
@@ -147,6 +159,10 @@ $(function(){
 			$scope.newSecondaryInput = "";
 	 
 		}
+	    
+	    $scope.performOperation = function(){
+	    	
+	    }
 	});
 	
 //	angular.module('equationEditorApp', []).directive('display', function() {

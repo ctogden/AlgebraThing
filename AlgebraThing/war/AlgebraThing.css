@@ -54,12 +54,22 @@ html,body {
 
 .newEquation_link{
 	line-height: 50px;
-	left: 320px;
+	left: 250px;
 }
 
 .save_link {
 	line-height: 50px;
-	left: 440px;
+	left: 370px;
+}
+
+.save_link_ln {
+	position: absolute;
+	line-height: 50px;
+	left: 160px;
+}
+
+.save_link_ln:hover {
+	text-decoration: none;
 }
 
 .logout_link {
@@ -207,6 +217,17 @@ html,body {
 	height: 40px;
 	font-size: 20px;
 }
+
+input.secondary-op {
+	border: none;
+	width: 40px;
+	border-bottom: 1px dotted #47008d;
+}
+
+input.secondary-op.ng-invalid {
+    color:white;
+    background: red;
+  }
 
 #go_button_1 {
 	position: absolute;
