@@ -55,16 +55,6 @@
 		<servlet-name>greetServlet</servlet-name>
 		<servlet-class>com.jazzberryjam.algebra_thing.AlgebraThing</servlet-class>
 	</servlet>
-
-	<servlet>
-	    <servlet-name>SaveEquationServlet</servlet-name>
-	    <servlet-class>com.jazzberryjam.algebra_thing.SaveEquationServlet</servlet-class>
-	</servlet>
-	
-	<servlet-mapping>
-	    <servlet-name>SaveEquationServlet</servlet-name>
-	    <url-pattern>/saveEquation</url-pattern>
-	</servlet-mapping>
 	
 	<servlet>
 		<display-name>Remote API Servlet</display-name>
@@ -88,4 +78,9 @@
 		<welcome-file>index.xhtml</welcome-file>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
+	
+	<error-page>
+        <error-code>404</error-code>
+        <location>/NotFound.jsp</location>
+    </error-page>
 </web-app>

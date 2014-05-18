@@ -3,6 +3,7 @@ package com.jazzberryjam.algebra_thing.beans;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -29,11 +30,12 @@ public class UserDataBean implements Serializable {
 	private Date dateJoined;
 	private long equSolved;
 	private long equSaved;
+	private List<String> equationHistoryList;
 	
 	private LoginStatusBean loginStatusBean;
 	
 	public UserDataBean() {
-		
+		equationHistoryList = new LinkedList<>();
 	}
 	
 	@PostConstruct
@@ -54,6 +56,16 @@ public class UserDataBean implements Serializable {
         			equSolved = (long) userData.getProperty("equSolved");
         			equSaved = (long) userData.getProperty("equSaved");
         			break;
+        		}
+        	}
+        	
+        	Key equationKey = KeyFactory.createKey("equation", "equation");
+        	Query equationQuery = new Query("equation", equationKey);
+        	List<Entity> equationList = datastore.prepare(equationQuery).asList(FetchOptions.Builder.withDefaults());
+        	
+        	for(Entity equation : equationList) {
+        		if(loginStatusBean.getUsername().equalsIgnoreCase((String) equation.getProperty("username"))) {
+        			equationHistoryList.add((String) equation.getProperty("equationJSON"));
         		}
         	}
 		}
@@ -129,5 +141,13 @@ public class UserDataBean implements Serializable {
 
 	public void setEquSaved(long equSaved) {
 		this.equSaved = equSaved;
+	}
+
+	public List<String> getEquationHistoryList() {
+		return equationHistoryList;
+	}
+
+	public void setEquationHistoryList(List<String> equationHistoryList) {
+		this.equationHistoryList = equationHistoryList;
 	}
 }

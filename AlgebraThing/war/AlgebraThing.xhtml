@@ -8,6 +8,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 	<h:head>
+		<title>Algebra Thing</title>
 		<link type="text/css" rel="stylesheet" href="bootstrap.css" />
 		<link type="text/css" rel="stylesheet" href="mathquill.css" />
 		<link type="text/css" rel="stylesheet" href="AlgebraThing.css" />
@@ -24,11 +25,14 @@
 		<script type="text/javascript" src="scripts/main.js"></script>
 		<script type="text/javascript" src="scripts/algebra-engine.js"></script>
 		<h:outputScript name="jquery/jquery.js" library="primefaces" />
+		<script>
+			var equJSONObj = {};
+		</script>
 	</h:head>
 <h:body>
 	<f:view contentType="text/html">
 		<h:panelGroup rendered="#{loginStatusBean.loggedIn}">
-			<script>
+			<script>			
 				var firstname = '#{userDataBean.firstname}';
 				var lastname = '#{userDataBean.lastname}';
 				var email = '#{userDataBean.email}';
@@ -48,7 +52,14 @@
 				var formattedDateJoined = dateJoined[1] + " " + dateJoined[2] + numEnd + ", " + dateJoined[5];
 				var equSolved = '#{userDataBean.equSolved}';
 				var equSaved = '#{userDataBean.equSaved}';
+				
+				var equationHistory = new Array();
 			</script>
+			<ui:repeat var="equation" value="#{userDataBean.equationHistoryList}">
+				<script>
+					equationHistory.push('#{equation}');
+				</script>
+			</ui:repeat>
 		</h:panelGroup>
 	
 		<div class="modal fade" id="welcome" tabindex="-1" role="dialog"
@@ -140,13 +151,20 @@
 							</div></li>
 					</h:panelGroup>
 					<h:panelGroup rendered="#{loginStatusBean.loggedIn}">
-						<li onclick="saveEquation();"><a class="save_link"
-							href="#save">Save</a></li>
+						<li>
+							<h:form id="save_equ_form">
+								<h:inputHidden id="equInput" value="#{saveEquationBean.equationJSON}" />
+								<h:commandLink onclick="$('#save_equ_form\\:equInput').val(JSON.stringify(equJSONObj));" styleClass="save_link_ln" value="Save" action="#{saveEquationBean.saveEquation}">
+									<f:ajax execute="@form" />
+								</h:commandLink>
+							</h:form>
+						</li>
 						<li><a class="profile_link" href="#profile">My Profile</a></li>
 						<li><h:form id="logout_form">
 								<h:commandLink styleClass="logout_link"
 									action="#{loginStatusBean.logout}" value="Logout" />
-							</h:form></li>
+							</h:form>
+						</li>
 					</h:panelGroup>
 				</ul>
 			</div>

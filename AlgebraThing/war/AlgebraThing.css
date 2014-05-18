@@ -54,12 +54,22 @@ html,body {
 
 .newEquation_link{
 	line-height: 50px;
-	left: 320px;
+	left: 250px;
 }
 
 .save_link {
 	line-height: 50px;
-	left: 440px;
+	left: 370px;
+}
+
+.save_link_ln {
+	position: absolute;
+	line-height: 50px;
+	left: 160px;
+}
+
+.save_link_ln:hover {
+	text-decoration: none;
 }
 
 .logout_link {
