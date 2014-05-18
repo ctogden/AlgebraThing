@@ -81,6 +81,17 @@ $(function(){
 		}
 	}
 	
+	equationEditorApp.directive('autoFocus', function($timeout) {
+	    return {
+	        restrict: 'AC',
+	        link: function(_scope, _element) {
+	            $timeout(function(){
+	                _element[0].focus();
+	            }, 0);
+	        }
+	    };
+	});
+	
 	equationEditorApp.directive('mathOutput',function(){
 		function link(scope, element, attrs) {
 		
@@ -148,6 +159,10 @@ $(function(){
 			$scope.newSecondaryInput = "";
 	 
 		}
+	    
+	    $scope.performOperation = function(){
+	    	
+	    }
 	});
 	
 //	angular.module('equationEditorApp', []).directive('display', function() {
