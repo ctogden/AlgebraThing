@@ -47,10 +47,13 @@ $(function() {
 
 	function latexGenerator(tree, parentOp, isRightChild) {
 		function parenthesis(value) {
-			if (tree.operator == "+" || tree.operator == "-") {
-				if (isRightChild === false || parentOp === "*") {
-					return "(" + value + ")";
-				}
+			var isPlusMinus = tree.operator == "+" || tree.operator == "-";
+			if (isPlusMinus && parentOp === "*") {
+				return "(" + value + ")";
+			}
+			var isNotDiv = isPlusMinus || tree.operator === "*";
+			if (isNotDiv && isRightChild === false) {
+				return "(" + value + ")";
 			}
 			return value;
 		}
