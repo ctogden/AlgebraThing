@@ -493,8 +493,7 @@ $(window).load(function() {
 						$location.path("/editor/" + (equations.length - 1));
 					} else {
 						$scope.error = "Invalid Equation";
-					}
-
+					}	
 				}
 			});
 
