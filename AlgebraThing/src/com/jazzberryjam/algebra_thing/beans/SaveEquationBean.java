@@ -18,6 +18,10 @@ import com.google.appengine.api.datastore.Query;
 @ManagedBean(name="saveEquationBean")
 @RequestScoped
 public class SaveEquationBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String equationJSON;
 	private int equationID;
 	private LoginStatusBean loginStatusBean;
