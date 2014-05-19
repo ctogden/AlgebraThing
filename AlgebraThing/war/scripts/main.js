@@ -1,16 +1,34 @@
 //Main script file for the application
-$(function() {
-
-	// On loading the initial page, it also loads the modal
-	// $(window).load(function(){
-	// $('#welcome').modal('show');
-	//		        
-	// });
+$(window).load(function(){
+	angular.element('#triggerModal').scope().ModalController;
 });
-(function() {
+
+(function () {
 	"use strict";
-	var equationEditorApp = angular.module('equationEditorApp', [ 'ngRoute',
-			'equationEditorControllers' ]);
+	var equationEditorApp = angular.module('equationEditorApp', [
+	                                                             'ngCookies',
+	                                                             'ui.bootstrap',
+	                                                             'ngRoute',
+	                                                             'equationEditorControllers'
+	                                                             ]);
+	
+    equationEditorApp.controller("ModalController", function($scope, $cookieStore, $modal) {
+		if ($cookieStore.get("algebraThingReturningVisitor") === undefined){
+			$cookieStore.put("algebraThingReturningVisitor", true);
+			console.log($cookieStore.get("algebraThingReturningVisitor"));
+			$modal.open({
+			      templateUrl: 'partials/Modal.html',
+			      controller: 'ModalInstanceCtrl'
+			});
+		}
+	});	
+    
+	
+    equationEditorApp.controller("ModalInstanceCtrl", function ($scope, $modalInstance){
+    	  $scope.cancel = function () {
+    		    $modalInstance.dismiss('cancel');
+    	  };
+    });
 
 	equationEditorApp.config(function($routeProvider) {
 		$routeProvider.when('/new', {
