@@ -2,6 +2,8 @@ package com.jazzberryjam.algebra_thing.beans;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +19,7 @@ import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.Query;
+import com.jazzberryjam.algebra_thing.EquationComparator;
 import com.jazzberryjam.algebra_thing.data.UserType;
 
 @ManagedBean(name="userDataBean")
@@ -63,9 +66,25 @@ public class UserDataBean implements Serializable {
         	Query equationQuery = new Query("equation", equationKey);
         	List<Entity> equationList = datastore.prepare(equationQuery).asList(FetchOptions.Builder.withDefaults());
         	
+        	Comparator<Entity> equationComparator = new EquationComparator();
+        	Collections.sort(equationList, equationComparator);
+        	
+        	equSaved = equationList.size();
+        	
+        	int count = 0;
         	for(Entity equation : equationList) {
+        		if(count > 4) {
+        			break;
+        		}
         		if(loginStatusBean.getUsername().equalsIgnoreCase((String) equation.getProperty("username"))) {
-        			equationHistoryList.add((String) equation.getProperty("equationJSON"));
+        			String equationJSON = (String) equation.getProperty("equationJSON");
+        			String date = (String) equation.getProperty("dateWorkedOn");
+        			
+        			int end = equationJSON.lastIndexOf('}');
+        			String formatted = equationJSON.substring(0, end) + ",\"dateWorkedOn\":\""
+        					+ date + "\"" + equationJSON.substring(end);
+        			equationHistoryList.add(formatted);
+        			count++;
         		}
         	}
 		}

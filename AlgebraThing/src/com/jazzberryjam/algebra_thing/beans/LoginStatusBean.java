@@ -8,8 +8,10 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -41,8 +43,17 @@ public class LoginStatusBean implements Serializable {
 	private String lastname;
 	private UserType userType;
 	
+	private String loginFeedback;
+	private boolean showLoginFeedback;
+	
+	private UIComponent component;
+	
+	private long equationID;
+	
 	public LoginStatusBean() {
 		loggedIn = false;
+		showLoginFeedback = false;
+		equationID=1;
 	}
 	
 	public void setLoggedIn(boolean loggedIn) {
@@ -125,6 +136,42 @@ public class LoginStatusBean implements Serializable {
 		this.regConfPword = regConfPword;
 	}
 
+	public UIComponent getComponent() {
+		return component;
+	}
+
+	public void setComponent(UIComponent component) {
+		this.component = component;
+	}
+
+	public String getLoginFeedback() {
+		return loginFeedback;
+	}
+
+	public void setLoginFeedback(String loginFeedback) {
+		this.loginFeedback = loginFeedback;
+	}
+
+	public boolean isShowLoginFeedback() {
+		return showLoginFeedback;
+	}
+
+	public void setShowLoginFeedback(boolean showLoginFeedback) {
+		this.showLoginFeedback = showLoginFeedback;
+	}
+
+	public long getEquationID() {
+		return equationID;
+	}
+
+	public void setEquationID(long equationID) {
+		this.equationID = equationID;
+	}
+
+	public void incEquationID() {
+		equationID++;
+	}
+	
 	public void login() {
 		String pwordHash = null;
 		try {
@@ -156,6 +203,7 @@ public class LoginStatusBean implements Serializable {
         }
         
         if(loggedIn) {
+        	showLoginFeedback = false;
         	Key userDataKey = KeyFactory.createKey("userData", "userData");
         	Query userDataQuery = new Query("userData", userDataKey);
         	List<Entity> userDataList = datastore.prepare(userDataQuery).asList(FetchOptions.Builder.withDefaults());
@@ -169,6 +217,25 @@ public class LoginStatusBean implements Serializable {
         			break;
         		}
         	}
+        	
+        	Key equationKey = KeyFactory.createKey("equation", "equation");
+        	Query equationQuery = new Query("equation", equationKey);
+        	List<Entity> equationList = datastore.prepare(equationQuery).asList(FetchOptions.Builder.withDefaults());
+        	
+        	long highestId = 1;
+        	for(Entity equation : equationList) {
+        		if(username.equalsIgnoreCase((String) equation.getProperty("username"))) {
+        			long id = (long) equation.getProperty("equationID");
+        			if(id > highestId) {
+        				highestId = id;
+        			}
+        		}
+        	}
+        	
+        	equationID = ++highestId;
+        } else {
+        	loginFeedback = "Your username/password combination is incorrect.";
+        	showLoginFeedback = true;
         }
         
         try {

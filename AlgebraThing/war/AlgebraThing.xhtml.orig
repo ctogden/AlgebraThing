@@ -82,13 +82,7 @@
 				<ul class="nav navbar-nav">
 					<h:panelGroup rendered="#{loginStatusBean.loggedIn}">
 						<li class="active"><a class="newEquation_link" href="#" onclick="$('#equ_id_form\\:inc_id').click(); equJSONObj = {};">New
- +							Equation</a>
- +							<h:form id="equ_id_form">
- +								<h:commandButton id="inc_id" style="display: none" actionListener="#{loginStatusBean.incEquationID}">
- +									<f:ajax execute="@form" />
- +								</h:commandButton>
- +							</h:form>	
- +						</li>
+<<<<<<< HEAD
 							Equation</a>
 						<li><a class="welcome_header" href="#username"><i>Hello, 
 						<h:outputText value="#{loginStatusBean.firstname}" /></i></a></li>
@@ -98,6 +92,17 @@
 								</h:commandButton>
 							</h:form>	
 						</li>
+=======
+ +							Equation</a>
+ +							<h:form id="equ_id_form">
+ +								<h:commandButton id="inc_id" style="display: none" actionListener="#{loginStatusBean.incEquationID}">
+ +									<f:ajax execute="@form" />
+ +								</h:commandButton>
+ +							</h:form>	
+ +						</li>
+						<li><a class="welcome_header" href="#username">Hello <h:outputText
+									value="#{loginStatusBean.firstname}" /></a></li>
+>>>>>>> afd0cb9a3791087bf4db6da6f8f36a5594f233c2
 					</h:panelGroup>
 					
 					<h:panelGroup rendered="#{!loginStatusBean.loggedIn}">

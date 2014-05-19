@@ -30,6 +30,23 @@ body{
 	top:50px;
 }
 
+.feedback {
+	position: absolute;
+    width: 350px;
+    height: auto;
+    background-color: #ffebe8;
+    border: 1px solid #dd3c10;
+    left: -175px;
+    margin-left: 50%;
+    top: 60px;
+    font-size: 13pt;
+    text-align: center;
+}
+
+.error_message {
+	display: block;
+}
+
 .header {
 	display: block;
 	text-align: center;
@@ -461,3 +478,36 @@ input.secondary-op.ng-invalid {
 	border-color: #FFC117;
 	outline: none; 	
 }
+
+#prof_equ_container {
+	position: relative;
+	width: 450px;
+	height: auto;
+	margin-left: 22px;
+	margin-top: -40px;
+}
+
+.prof_equ_wrapper {
+	position: relative;
+	width: 450px;
+	height: 50px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid;
+	border-radius: 4px;
+	background: #f5f5f5;
+	font-size: 12pt;
+}
+
+.prof_equ_left {
+	float: left;
+	line-height: 50px;
+	margin-left: 10px;
+}
+
+.prof_equ_right {
+	float: right;
+	line-height: 50px;
+	margin-right: 10px;
+}
+

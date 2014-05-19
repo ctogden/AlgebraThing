@@ -4,7 +4,34 @@
 		$('#prof_member_since_wrapper').text(formattedDateJoined);
 		$('#prof_equ_solved_wrapper').text(equSolved);
 		$('#prof_equ_saved_wrapper').text(equSaved);
-		</script>
+		
+		var equString = "prof_equation_";
+		var dateString = "prof_date_";
+		
+		for(var i = 0; i < equationHistory.length; i++) {
+			var j = JSON.parse(equationHistory[i]);
+			var equID = equString + (i+1);
+			var dateID = dateString + (i+1);
+			
+			var dateSplit = j['dateWorkedOn'].split(" ");
+			var day = parseInt(dateSplit[2])%10;
+			var dateEnd;
+			if(day === 1) {
+				dateEnd = 'st';
+			} else if(day === 2) {
+				dateEnd = 'nd';
+			} else if(day === 3) {
+				dateEnd = 'rd';
+			} else {
+				dateEnd = 'th';
+			}
+			
+			$('#' + equID + ' > span').text(j['equation']);
+			$('#' + dateID + ' > span').text(dateSplit[0] + " " + dateSplit[1] + " " 
+					+ day + dateEnd + ", " + dateSplit[5]);
+		}
+		
+	</script>
 	<img class="gravatar" src="/images/gravatar.png">
 	
 	<div id="profile_name">
@@ -35,6 +62,48 @@
 		<h2 id="savedEquations_label">Saved Equations</h2>
 		<h3 id="equations_label"> Equations </h3>
 		<h3 id="lastWorked_label"> Last Worked On </h3>
+		<div id="prof_equ_container">
+			<div class="prof_equ_wrapper">
+				<div id="prof_equation_1" class="prof_equ_left">
+					<span></span>
+				</div>
+				<div id="prof_date_1" class="prof_equ_right">
+					<span></span>
+				</div>
+			</div>
+			<div class="prof_equ_wrapper">
+				<div id="prof_equation_2" class="prof_equ_left">
+					<span></span>
+				</div>
+				<div id="prof_date_2" class="prof_equ_right">
+					<span></span>
+				</div>
+			</div>
+			<div class="prof_equ_wrapper">
+				<div id="prof_equation_3" class="prof_equ_left">
+					<span></span>
+				</div>
+				<div id="prof_date_3" class="prof_equ_right">
+					<span></span>
+				</div>
+			</div>
+			<div class="prof_equ_wrapper">
+				<div id="prof_equation_4" class="prof_equ_left">
+					<span></span>
+				</div>
+				<div id="prof_date_4" class="prof_equ_right">
+					<span></span>
+				</div>
+			</div>
+			<div class="prof_equ_wrapper">
+				<div id="prof_equation_5" class="prof_equ_left">
+					<span></span>
+				</div>
+				<div id="prof_date_5" class="prof_equ_right">
+					<span></span>
+				</div>
+			</div>
+		</div>
 	</div>
 
 </div>
