@@ -25,12 +25,20 @@
 		<script type="text/javascript" src="scripts/angular-cookies.min.js"></script>
 		<script type="text/javascript" src="scripts/modal.js"></script>
 		<script type="text/javascript" src="scripts/scrollglue.js"></script>
-		<script type="text/javascript" src="scripts/save-eqn.js"></script>
 		<script type="text/javascript" src="scripts/parser.js"></script>
 		<script type="text/javascript" src="scripts/main.js"></script>
 		<h:outputScript name="jquery/jquery.js" library="primefaces" />
-		<script>
+		<script type="text/javascript">
 			var equJSONObj = {};
+			
+			function setEquation() {
+				var eq = $('span.selectable').text();
+				var feq = eq.substring(1, eq.length-1);
+				equJSONObj = {
+					"equation": feq	
+				};
+				console.log(equJSONObj);
+			}
 		</script>
 	</h:head>
 <h:body>
@@ -158,7 +166,7 @@
 						<li>
 							<h:form id="save_equ_form">
 								<h:inputHidden id="equInput" value="#{saveEquationBean.equationJSON}" />
-								<h:commandLink onclick="$('#save_equ_form\\:equInput').val(JSON.stringify(equJSONObj));" styleClass="save_link_ln" value="Save" action="#{saveEquationBean.saveEquation}">
+								<h:commandLink onclick="setEquation(); $('#save_equ_form\\:equInput').val(JSON.stringify(equJSONObj));" styleClass="save_link_ln" value="Save" action="#{saveEquationBean.saveEquation}">
 									<f:ajax execute="@form" update=":equation_history_loader" />
 								</h:commandLink>
 							</h:form>

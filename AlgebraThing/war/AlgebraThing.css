@@ -92,7 +92,7 @@ body{
 .save_link_ln {
 	position: absolute;
 	line-height: 50px;
-	left: 160px;
+	left: 80px;
 }
 
 .save_link_ln:hover {
@@ -306,7 +306,7 @@ input.secondary-op.ng-invalid {
 	position: absolute;
 	width: 220px;
 	height: auto;
-	left: 130px;
+	left: 60px;
 	top: 50px;
 	background: #fff;
 	border: 1px solid #47008d;
@@ -379,7 +379,7 @@ input.secondary-op.ng-invalid {
 	position: absolute;
 	width: 220px;
 	height: auto;
-	left: 130px;
+	left: 60px;
 	top: 50px;
 	background: #fff;
 	border: 1px solid #47008d;
