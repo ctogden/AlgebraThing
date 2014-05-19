@@ -12,7 +12,6 @@ $(window).load(function() {
 			$cookieStore, $modal) {
 		if ($cookieStore.get("algebraThingReturningVisitor") === undefined) {
 			$cookieStore.put("algebraThingReturningVisitor", true);
-			console.log($cookieStore.get("algebraThingReturningVisitor"));
 			$modal.open({
 				templateUrl : 'partials/Modal.html',
 				controller : 'ModalInstanceCtrl'
@@ -502,10 +501,11 @@ $(window).load(function() {
 				var multOp = "\u00D7";
 				var divOp = "\u00F7";
 				$scope.equation = equations[$routeParams.equationId];
-				this.inputHidden = false; // TODO: we'd like to be able to
+				$scope.inputHidden = true; // TODO: we'd like to be able to
 				// hide this until a operator is
 				// selected
 				$scope.setValue = function(val) {
+					$scope.inputHidden = false;
 					if (val == 'add')
 						$scope.operator = addOp;
 					else if (val == 'subtract')
