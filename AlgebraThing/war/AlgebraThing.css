@@ -528,3 +528,7 @@ input.secondary-op.ng-invalid {
 	margin: 0 auto;
 	top: 150px;
 }
+
+div#faq-box {
+	margin-right: 200px;
+}
