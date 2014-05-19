@@ -546,7 +546,7 @@ $(window).load(function() {
 				
 				$scope.reverseStep = function(equation){
 					
-					var index = $scope.equation.history.indexOf(equation);
+					var index = $scope.equation.history.length-1;
 					$scope.equation.history.splice(index,1);
 				}
 
