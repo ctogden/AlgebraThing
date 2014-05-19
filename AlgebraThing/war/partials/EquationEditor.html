@@ -1,6 +1,7 @@
-<div id="big_equation_container">
-	<div id="equation_bottom_container">
+<div id="big_equation_container" ng-controller="ScrollController">
+	<div id="equation_bottom_container" scroll-glue ng-model="glued">
 		<div class="equation_entry" ng-repeat="entry in equation.history">
+		<img id="revert" ng-click="reverseStep(entry)" src="images/revert.png" height="30px" width="30px"/>
 			<math-output equation="entry.equation"></math-output>
 			<div class="operator_display clearfix">
 				<span class='operator_left'>{{ entry.operator }}{{ entry.operatorValue }}
@@ -14,10 +15,10 @@
 			<div class="operator_display clearfix">
 				<form ng-submit="performOperation()">
 					<span id='operator_display_side1'>{{ operator }}
-						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="opValue" ng-pattern="/^(\d|[a-z])+$/i" auto-focus>
+						<input ng-hide="inputHidden" class="secondary-op" type="text" ng-model="opValue" ng-pattern="/^(\d|[a-z])+$/i" auto-focus>
 					</span>
 					<span id='operator_display_side2'>{{ operator }}
-						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="opValue" ng-pattern="/^(\d|[a-z])+$/i">
+						<input ng-hide="inputHidden" class="secondary-op" type="text" ng-model="opValue" ng-pattern="/^(\d|[a-z])+$/i">
 					</span>
 					<input type="submit" class="hidden-submit">
 				</form>

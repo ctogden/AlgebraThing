@@ -521,3 +521,28 @@ input.secondary-op.ng-invalid {
 	margin-right: 10px;
 }
 
+.close_feedback {
+	display: block;
+	text-align: center;
+}
+
+.close_feedback:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+#not_found_main {
+	position: relative;
+	width: 600px;
+	height: auto;
+	margin: 0 auto;
+	top: 150px;
+}
+
+div#faq-box {
+	margin-right: 200px;
+}
+
+#revert{
+	cursor: pointer;
+}

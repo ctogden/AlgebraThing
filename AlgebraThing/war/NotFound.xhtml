@@ -28,6 +28,54 @@
 	</h:head>
 <h:body>
 	<f:view contentType="text/html">
-		<h1>Custom 404 Page</h1>
+	<header id="navbar" class="navbar navbar-inverse navbar-fixed-top"
+			role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="AlgebraThing.jsf">AlgebraThing</a>
+			</div>
+			<div class="collapse navbar-collapse">
+				
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+		</header>
+		<h:panelGroup id="reg_feedback" layout="block" styleClass="feedback" rendered="#{facesContext.messageList.size() != 0}">
+			<h:message styleClass="error_message" for="register_form:regFirstname" />
+			<h:message styleClass="error_message" for="register_form:regLastname" />
+			<h:message styleClass="error_message" for="register_form:regUsername" />
+			<h:message styleClass="error_message" for="register_form:regPword" />
+			<h:message styleClass="error_message" for="register_form:regConfPword" />
+			<h:message styleClass="error_message" for="login_form:username" />
+			<h:message styleClass="error_message" for="login_form:pword" />
+			<script>
+				setTimeout(function() {$('#reg_feedback').css("display", "none");}, 5000);
+			</script>
+		</h:panelGroup>
+		<h:panelGroup id="login_feedback_group" layout="block" styleClass="feedback" 
+			rendered="#{facesContext.messageList.size() == 0 &amp;&amp; loginStatusBean.showLoginFeedback}">
+			<h:outputText styleClass="error_message" value="#{loginStatusBean.loginFeedback}" />
+			<script>
+				$('#hide_feedback\\:hf').click();
+				setTimeout(function() {$('#login_feedback_group').css("display", "none");}, 5000);
+			</script>
+		</h:panelGroup>
+		<div id="main_content" data-ng-view="true"></div>
+			<div id="not_found_main">
+				<h1>Sorry, the page you are looking for was not found.</h1>
+				<h3><a href="AlgebraThing.jsf">Back to practicing algebra.</a></h3>
+			</div>
+		<!-- Footer -->
+		<div id="footer">
+			<div id="copyright">© JJ Enterprises</div>
+			<a id="faq" href="#faq">FAQ</a> <a id="contact" href="#contact">Contact</a>
+		</div>
+		</f:view>
 </h:body>
 </html>
