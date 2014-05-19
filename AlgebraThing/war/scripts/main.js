@@ -389,7 +389,9 @@ $(window).load(function() {
 		var variableSumList = [];
 		for ( var key in variableSumMap) {
 			var coefficient = variableSumMap[key];
-			variableSumList.push(makeTreeFromString(coefficient, key));
+			if (coefficient !== 0) {
+				variableSumList.push(eliminateMultiplicationOnes(makeTreeFromString(coefficient, key)));
+			}
 		}
 		var startNode;
 		if (variableSumList.length > 0) {
@@ -399,8 +401,8 @@ $(window).load(function() {
 			startNode = complexChildren[0];
 			complexChildren = complexChildren.slice(1);
 		}
-		var returnNode = treeFromList(startNode, variableSumList);
-		returnNode = treeFromList(returnNode, complexChildren);
+		var returnNode = treeFromList(startNode, variableSumList, "+");
+		returnNode = treeFromList(returnNode, complexChildren, "+");
 		return returnNode;
 	}
 

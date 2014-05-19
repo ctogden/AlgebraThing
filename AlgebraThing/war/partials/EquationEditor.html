@@ -14,10 +14,10 @@
 			<div class="operator_display clearfix">
 				<form ng-submit="performOperation()">
 					<span id='operator_display_side1'>{{ operator }}
-						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="opValue" ng-pattern="/^\d+$/" auto-focus>
+						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="opValue" ng-pattern="/^(\d|[a-z])+$/i" auto-focus>
 					</span>
 					<span id='operator_display_side2'>{{ operator }}
-						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="opValue" ng-pattern="/^\d+$/">
+						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="opValue" ng-pattern="/^(\d|[a-z])+$/i">
 					</span>
 					<input type="submit" class="hidden-submit">
 				</form>
@@ -35,7 +35,7 @@
 			<button ng-click="setValue('divide')" id="divide_function"
 				type="button" class="btn btn-functions">&#x00F7;</button>
 		</div>
-		<button ng-click="simplify()">Simplify</button>
+		<button id="simplify_button" class="btn-functions" ng-click="simplify()">Simplify!</button>
 
 	</div>
 </div>
