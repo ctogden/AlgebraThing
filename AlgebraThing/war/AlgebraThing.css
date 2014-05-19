@@ -92,7 +92,7 @@ body{
 .save_link_ln {
 	position: absolute;
 	line-height: 50px;
-	left: 80px;
+	left: 160px;
 }
 
 .save_link_ln:hover {
@@ -306,7 +306,7 @@ input.secondary-op.ng-invalid {
 	position: absolute;
 	width: 220px;
 	height: auto;
-	left: 60px;
+	left: 130px;
 	top: 50px;
 	background: #fff;
 	border: 1px solid #47008d;
@@ -379,7 +379,7 @@ input.secondary-op.ng-invalid {
 	position: absolute;
 	width: 220px;
 	height: auto;
-	left: 60px;
+	left: 130px;
 	top: 50px;
 	background: #fff;
 	border: 1px solid #47008d;
@@ -541,8 +541,4 @@ input.secondary-op.ng-invalid {
 
 div#faq-box {
 	margin-right: 200px;
-}
-
-#revert{
-	cursor: pointer;
 }

@@ -543,13 +543,6 @@ $(window).load(function() {
 				$scope.simplify = function() {
 					$scope.equation.simplify();
 				}
-				
-				$scope.reverseStep = function(equation){
-					
-					var index = $scope.equation.history.length-1;
-					$scope.equation.history.splice(index,1);
-				}
-
 			});
 
 	equationEditorControllers.controller("ProfileCtrl", function ProfileCtrl(
