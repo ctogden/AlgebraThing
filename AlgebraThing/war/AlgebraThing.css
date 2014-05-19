@@ -520,3 +520,11 @@ input.secondary-op.ng-invalid {
 	cursor: pointer;
 	text-decoration: underline;
 }
+
+#not_found_main {
+	position: relative;
+	width: 600px;
+	height: auto;
+	margin: 0 auto;
+	top: 150px;
+}
