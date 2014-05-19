@@ -12,3 +12,4 @@ AlgebraThing/war/WEB-INF/lib/geronimo-jpa_2.0_spec-1.0.jar
 AlgebraThing/war/WEB-INF/lib/jdo-api-3.0.1.jar
 AlgebraThing/war/WEB-INF/lib/jsr107cache-1.1.jar
 AlgebraThing/war/WEB-INF/lib/jta-1.1.jar
+AlgebraThing/war/WEB-INF/appengine-generated/datastore-indexes-auto.xml
