@@ -12,14 +12,18 @@
 		<link type="text/css" rel="stylesheet" href="bootstrap.css" />
 		<link type="text/css" rel="stylesheet" href="mathquill.css" />
 		<link type="text/css" rel="stylesheet" href="AlgebraThing.css" />
+		<link type="text/css" rel="stylesheet" href="jquery-ui-1.10.4.css" />
 		<!-- External Scripts -->
 		<script type="text/javascript" src="scripts/jquery.min.js"></script>
+		<script type="text/javascript" src="scripts/jquery-ui-1.10.4.min.js"></script>
 		<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
 		<script type="text/javascript" src="scripts/mathquill.min.js"></script>
 		<script type="text/javascript" src="scripts/parsimmon.browser.js"></script>
 		<script type="text/javascript" src="scripts/angular.min.js"></script>
 		<script type="text/javascript" src="scripts/angular-bootstrap.min.js"></script>
 		<script type="text/javascript" src="scripts/angular-route.min.js"></script>
+		<script type="text/javascript" src="scripts/angular-cookies.min.js"></script>
+				<script type="text/javascript" src="scripts/modal.js"></script>
 		<script type="text/javascript" src="scripts/save-eqn.js"></script>
 		<script type="text/javascript" src="scripts/parser.js"></script>
 		<script type="text/javascript" src="scripts/main.js"></script>
@@ -61,25 +65,7 @@
 				</script>
 			</ui:repeat>
 		</h:panelGroup>
-	
-		<div class="modal fade" id="welcome" tabindex="-1" role="dialog"
-			aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="myModalLabel">Algebra Thing</h4>
-					</div>
-					<div class="modal-body">
-						The best way to practice algebra.
-						<p>More content goes here...</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Let's
-							Practice Algebra!</button>
-					</div>
-				</div>
-			</div>
-		</div>
+		<div id="triggerModal" ng-controller="ModalController"></div>
 
 		<header id="navbar" class="navbar navbar-inverse navbar-fixed-top"
 			role="navigation">
