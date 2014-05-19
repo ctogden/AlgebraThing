@@ -1,7 +1,7 @@
 <div id="big_equation_container" ng-controller="ScrollController">
 	<div id="equation_bottom_container" scroll-glue ng-model="glued">
 		<div class="equation_entry" ng-repeat="entry in equation.history">
-		<img id="revert" ng-click="reverseStep(entry)" src="images/revert.png" />
+		<img id="revert" ng-click="reverseStep(entry)" src="images/revert.png" height="30px" width="30px"/>
 			<math-output equation="entry.equation"></math-output>
 			<div class="operator_display clearfix">
 				<span class='operator_left'>{{ entry.operator }}{{ entry.operatorValue }}
