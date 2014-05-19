@@ -71,7 +71,5 @@ public class SaveEquationBean implements Serializable {
     	equationData.setProperty("equationJSON", equationJSON);
     	equationData.setProperty("dateWorkedOn", date.toString());
     	datastore.put(equationData);
-    	
-    	Key 
 	}
 }
