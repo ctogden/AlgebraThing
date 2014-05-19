@@ -45,23 +45,24 @@ $(function() {
 
 	}
 
-	function latexGenerator(tree) {
+	function latexGenerator(tree, parentOp, isRightChild) {
+		function parenthesis(value) {
+			if (tree.operator == "+" || tree.operator == "-") {
+				if (isRightChild === false || parentOp === "*") {
+					return "(" + value + ")";
+				}
+			}
+			return value;
+		}
+		
 		if (tree == null) {
 			return "";
 		}
 
 		else if (!isNaN(tree) || typeof (tree) === "string") {
 			return tree;
-		}
-
-		else if (tree.type === "paren") {
-			if (tree.value.operator === "/") {
-				return latexGenerator(tree.value);
-			} else {
-				return "{" + latexGenerator(tree.value) + "}";
-			}
-
 		} else if (tree.type === "binop") {
+			
 			if (tree.operator === "/") {
 				return "\\frac{" + latexGenerator(tree.left) + "}{"
 						+ latexGenerator(tree.right) + "}";
@@ -69,9 +70,9 @@ $(function() {
 				return latexGenerator(tree.left) + "^{"
 						+ latexGenerator(tree.right) + "}";
 			} else {
-				return latexGenerator(tree.left)
+				return parenthesis(latexGenerator(tree.left, tree.operator, false)
 						+ realOp(tree.operator, tree.right)
-						+ latexGenerator(tree.right);
+						+ latexGenerator(tree.right, tree.operator, true));
 			}
 		}
 	}

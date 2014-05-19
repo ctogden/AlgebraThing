@@ -33,13 +33,6 @@
 		}
 	}
 	
-	function getParenObject(value){
-		return {
-			type: "paren" ,
-			value : value
-		};
-	}
-	
 	var lparen = lexeme(string("(")); 
 	var rparen = lexeme(string(")")); 
 	
@@ -66,7 +59,7 @@
 	}); 
 	var parenexpr = monomial.or(lparen.then(lazy(function() {
 		return expr;
-	}).map(getParenObject)).skip(rparen)); 
+	})).skip(rparen)); 
 	var expexpr = seq(parenexpr, exponent, parenexpr).map(function(array){
 		return{
 			type: "binop",  
