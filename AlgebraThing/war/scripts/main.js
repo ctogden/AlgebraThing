@@ -6,7 +6,7 @@ $(window).load(function() {
 (function() {
 	"use strict";
 	var equationEditorApp = angular.module('equationEditorApp', [ 'ngCookies',
-			'ui.bootstrap', 'ngRoute', 'equationEditorControllers' ]);
+			'ui.bootstrap', 'ngRoute', 'equationEditorControllers', 'luegg.directives' ]);
 
 	equationEditorApp.controller("ModalController", function($scope,
 			$cookieStore, $modal) {
@@ -24,6 +24,10 @@ $(window).load(function() {
 		$scope.cancel = function() {
 			$modalInstance.dismiss('cancel');
 		};
+	});
+	
+	equationEditorApp.controller("ScrollController", function($scope, $timeout){
+		$scope.glued = true;
 	});
 
 	equationEditorApp.config(function($routeProvider) {
