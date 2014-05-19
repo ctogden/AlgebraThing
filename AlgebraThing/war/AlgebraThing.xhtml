@@ -30,14 +30,30 @@
 		<h:outputScript name="jquery/jquery.js" library="primefaces" />
 		<script type="text/javascript">
 			var equJSONObj = {};
+			var steps = new Array();
 			
 			function setEquation() {
 				var eq = $('span.selectable').text();
-				var feq = eq.substring(1, eq.length-1);
+				var feq = eq.split("$");
+				console.log(feq[1]);
 				equJSONObj = {
-					"equation": feq	
+					"equation": feq[1],
+					"steps": steps
 				};
-				console.log(equJSONObj);
+			}
+			
+			window.onkeyup = function(e) {
+				var key = e.keyCode ? e.keyCode : e.which;
+				if(key === 13) {
+					steps = new Array();
+					var stepString = $('span.selectable').text();
+					var stepsSplit = stepString.split("$");
+					
+					for(var i = 1; i &lt; stepsSplit.length; i+=2) {
+						steps.push(stepsSplit[i]);
+					}
+					console.log(steps);
+				}
 			}
 		</script>
 	</h:head>
