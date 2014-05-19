@@ -532,3 +532,7 @@ input.secondary-op.ng-invalid {
 div#faq-box {
 	margin-right: 200px;
 }
+
+#revert{
+	cursor: pointer;
+}
