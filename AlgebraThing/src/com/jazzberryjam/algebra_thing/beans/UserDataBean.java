@@ -25,6 +25,10 @@ import com.jazzberryjam.algebra_thing.data.UserType;
 @ManagedBean(name="userDataBean")
 @RequestScoped
 public class UserDataBean implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String username;
 	private String email;
 	private String firstname;
