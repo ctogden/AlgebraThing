@@ -41,9 +41,12 @@ $(function(){
 	                        });
 	                    });
 	
-	function realOp(operator){
+	function realOp(operator, right){
 		if(operator ==="*"){
-			return "\\times "
+			if(typeof(right) == "string" && /[a-z]/i.test(right)){
+				return ""; 
+			}
+			return "\\times "; 
 		}
 		
 		return operator; 
@@ -76,7 +79,7 @@ $(function(){
 				return latexGenerator(tree.left) + "^{" + latexGenerator(tree.right) + "}"; 
 			}
 			else {
-				return latexGenerator(tree.left) + realOp(tree.operator) + latexGenerator(tree.right);
+				return latexGenerator(tree.left) + realOp(tree.operator,tree.right) + latexGenerator(tree.right);
 			}
 		}
 	}
