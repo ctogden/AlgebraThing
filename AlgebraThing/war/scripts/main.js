@@ -109,6 +109,38 @@ $(function() {
 		};
 
 	});
+	
+	
+	function performOperationOnTree(tree, operator, value) {
+		return {
+			type: "binop",
+			left: tree,
+			operator: operator,
+			right: value,
+		};
+	}
+	
+	function Equation(left, right) {
+		this.value = {
+			left: left,
+			right: right
+		};
+		this.history = [];
+	}
+	
+	Equation.prototype = {
+		performOperation: function (operator, value) {
+			this.history.push({
+				equation: this.value,
+				operator: operator,
+				operatorValue: value
+			});
+			this.value = {
+				left : performOperationOnTree(this.value.left, operator, value),
+				right : performOperationOnTree(this.value.right, operator, value)
+			};
+		}
+	};
 
 	var equations = [];
 	var equationEditorControllers = angular.module('equationEditorControllers',
@@ -117,12 +149,8 @@ $(function() {
 			function NewEquationCtrl($scope, $location) {
 				$scope.submitEquation = function() {
 					var parseResult = window.parser.parse($scope.newEquation);
-					var newEquation;
 					if (parseResult.status == true) {
-						newEquation = {
-							left: parseResult.value[0],
-							right: parseResult.value[1]
-						}
+						var newEquation = new Equation(parseResult.value[0], parseResult.value[1]);
 						equations.push(newEquation);
 						$scope.newEquation = "";
 						$location.path("/editor/" + (equations.length - 1));
@@ -140,11 +168,9 @@ $(function() {
 				var multOp = "\u00D7";
 				var divOp = "\u00F7";
 				$scope.equation = equations[$routeParams.equationId];
-				$scope.secondaryInput = [];
 				this.inputHidden = false; // TODO: we'd like to be able to
 											// hide this until a operator is
 											// selected
-				this.secondaryOp = '';
 				$scope.setValue = function(val) {
 					if (val == 'add')
 						$scope.operator = addOp;
@@ -157,29 +183,11 @@ $(function() {
 				};
 				$scope.toggle = function(val) {
 					if (val == 'Functions') {
-
 						$scope.display = false;
-
 					} else {
-
 						$scope.display = true;
 					}
 				};
-
-				$scope.submitSecondaryInput = function() {
-					secondaryInput.push($scope.newSecondaryInput);
-					$scope.newSecondaryInput = "";
-
-				}
-				
-				function performOperationOnTree(tree, operator, value) {
-					return {
-						type: "binop",
-						left: tree,
-						operator: operator,
-						right: value,
-					};
-				}
 
 				$scope.performOperation = function() {
 					var op;
@@ -192,10 +200,7 @@ $(function() {
 					} else if ($scope.operator == divOp) {
 						op = "/";
 					}
-					$scope.equation = {
-						left : performOperationOnTree($scope.equation.left, op, $scope.opValue),
-						right : performOperationOnTree($scope.equation.right, op, $scope.opValue)
-					};
+					$scope.equation.performOperation(op, $scope.opValue);
 				}
 			});
 

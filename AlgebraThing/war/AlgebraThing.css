@@ -129,18 +129,18 @@ html,body {
 	outline: 0;
 }
 
-#equation_display {
+#equation_display, .equation_entry {
 	text-align: center; 
 	font-size: 24px;
 }
 
-#operator_display_side1{
+#operator_display_side1, .operator_left {
 	float: left;
 	font-size: 24px;
 	color: #47008d;
 }
 
-#operator_display_side2{
+#operator_display_side2, .operator_right{
 	float: right;
 	font-size: 24px;
 	color: #47008d;
