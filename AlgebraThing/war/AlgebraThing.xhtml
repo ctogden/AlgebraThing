@@ -93,6 +93,11 @@
 						<h:outputText value="#{loginStatusBean.firstname}" /></i></a></li>
 					</h:panelGroup>					
 					<h:panelGroup rendered="#{!loginStatusBean.loggedIn}">
+						<h:form id="hide_feedback">
+							<h:commandButton id="hf" style="display: none" actionListener="#{loginStatusBean.hideFeedback}">
+								<f:ajax execute="@form" update=":login_feedback_group" />
+							</h:commandButton>
+						</h:form>
 						<li class="active"><a class="newEquation_link" onclick="equJSONObj = {};" href="#">New
 							Equation</a></li>
 						<li><a class="save_link" href="#save"
@@ -171,7 +176,7 @@
 			<!--/.nav-collapse -->
 		</div>
 		</header>
-		<h:panelGroup layout="block" styleClass="feedback" rendered="#{facesContext.messageList.size() != 0}">
+		<h:panelGroup id="reg_feedback" layout="block" styleClass="feedback" rendered="#{facesContext.messageList.size() != 0}">
 			<h:message styleClass="error_message" for="register_form:regFirstname" />
 			<h:message styleClass="error_message" for="register_form:regLastname" />
 			<h:message styleClass="error_message" for="register_form:regUsername" />
@@ -179,10 +184,17 @@
 			<h:message styleClass="error_message" for="register_form:regConfPword" />
 			<h:message styleClass="error_message" for="login_form:username" />
 			<h:message styleClass="error_message" for="login_form:pword" />
+			<script>
+				setTimeout(function() {$('#reg_feedback').css("display", "none");}, 5000);
+			</script>
 		</h:panelGroup>
-		<h:panelGroup layout="block" styleClass="feedback" 
+		<h:panelGroup id="login_feedback_group" layout="block" styleClass="feedback" 
 			rendered="#{facesContext.messageList.size() == 0 &amp;&amp; loginStatusBean.showLoginFeedback}">
 			<h:outputText styleClass="error_message" value="#{loginStatusBean.loginFeedback}" />
+			<script>
+				$('#hide_feedback\\:hf').click();
+				setTimeout(function() {$('#login_feedback_group').css("display", "none");}, 5000);
+			</script>
 		</h:panelGroup>
 		<div id="main_content" data-ng-view="true"></div>
 

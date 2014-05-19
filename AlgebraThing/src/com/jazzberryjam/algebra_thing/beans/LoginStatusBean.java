@@ -172,6 +172,11 @@ public class LoginStatusBean implements Serializable {
 		equationID++;
 	}
 	
+	public void hideFeedback() {
+		loginFeedback = "";
+		showLoginFeedback = false;
+	}
+	
 	public void login() {
 		String pwordHash = null;
 		try {
