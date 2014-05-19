@@ -43,7 +43,7 @@ $(function(){
 	
 	function realOp(operator){
 		if(operator ==="*"){
-			return "\\times"
+			return "\\times "
 		}
 		
 		return operator; 
