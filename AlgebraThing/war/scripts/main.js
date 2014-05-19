@@ -67,12 +67,12 @@ $(window).load(function(){
 		function parenthesis(value) {
 			var isPlusMinus = tree.operator == "+" || tree.operator == "-";
 			if (isPlusMinus) {
-				if (parentOp === "*" || isRightChild == false) {
+				if (parentOp === "*" || isRightChild == true) {
 					return "(" + value + ")";
 				}
 			}
 			
-			if (tree.operator === "*" && parentOp === "*" && isRightChild === false) {
+			if (tree.operator === "*" && parentOp === "*" && isRightChild === true) {
 				return "(" + value + ")";
 			}
 			return value;
@@ -140,6 +140,100 @@ $(window).load(function(){
 		};
 	}
 	
+	function cloneTree(tree) {
+		var newTree = {};
+		for (var key in tree) {
+			newTree[key] = tree[key];
+		}
+		if (tree.left) {
+			newTree.left = cloneTree(tree.left);
+		}
+		if (tree.right) {
+			newTree.right = cloneTree(tree.right);
+		}
+	}
+	
+	function getMultiplyChildren(tree, returnList) {
+		if (tree == null) {
+			return;
+		}
+		if (tree.operator !== "*") {
+			returnList.push(tree);
+		} else {
+			getMultiplyChildren(tree.left, returnList);
+			getMultiplyChildren(tree.right, returnList);
+		}
+	}
+	
+	function treeFromList(startNode, list, operator) {
+		var currentNode = startNode;
+		for (var i=0; i<list.length; i++) {
+			currentNode = {
+				type: "binop",
+				operator: operator,
+				left: currentNode,
+				right: list[i]
+			}
+		}
+		return currentNode;
+	}
+	
+	function eliminateMultiplicationOnes(tree) {
+		if (tree.type !== "binop") {
+			return tree;
+		}
+		
+		tree.left = eliminateMultiplicationOnes(tree.left);
+		tree.right = eliminateMultiplicationOnes(tree.right);
+		if (tree.left == 1) {
+			return  tree.right;
+		} else if (tree.right == 1) {
+			return tree.left;
+		}
+		
+		return tree;
+	}
+	
+	function simplifyMultiplication(tree) {
+		var multChildren = [];
+		getMultiplyChildren(tree, multChildren);
+		multChildren.forEach(findMultiplication);
+		var variableChildren = [];
+		var complexChildren = [];
+		var numberTerm = 1;
+		for (var i=0; i<multChildren.length; i++) {
+			var child = multChildren[i];
+			if (!isNaN(child)) {
+				numberTerm *= child;
+			} else if(typeof(child) === "string") {
+				variableChildren.push(child);
+			} else {
+				complexChildren.push(child);
+			}
+		}
+		variableChildren.sort();
+		var currentNode = treeFromList(numberTerm, variableChildren, "*");
+		currentNode = treeFromList(currentNode, complexChildren, "*");
+		
+		return eliminateMultiplicationOnes(currentNode);
+	}
+	
+	function findMultiplication(tree) {
+		if (!tree) {
+			return;
+		}
+		if (tree.operator === "*") {
+			return simplifyMultiplication(tree);
+		}
+		tree.left = findMultiplication(tree.left);
+		tree.right = findMultiplication(tree.right);
+		return tree;
+	}
+	
+	function simplifyTree(tree) {
+		return findMultiplication(tree);
+	}
+	
 	function Equation(left, right) {
 		this.value = {
 			left: left,
@@ -158,6 +252,12 @@ $(window).load(function(){
 			this.value = {
 				left : performOperationOnTree(this.value.left, operator, value),
 				right : performOperationOnTree(this.value.right, operator, value)
+			};
+		},
+		simplify: function() {
+			this.value = {
+				left: simplifyTree(this.value.left),
+				right: simplifyTree(this.value.right),
 			};
 		}
 	};
@@ -221,6 +321,10 @@ $(window).load(function(){
 						op = "/";
 					}
 					$scope.equation.performOperation(op, $scope.opValue);
+				}
+				
+				$scope.simplify = function() {
+					$scope.equation.simplify();
 				}
 			});
 
