@@ -1,5 +1,5 @@
-<div id="big_equation_container">
-	<div id="equation_bottom_container">
+<div id="big_equation_container" ng-controller="ScrollController">
+	<div id="equation_bottom_container" scroll-glue ng-model="glued">
 		<div class="equation_entry" ng-repeat="entry in equation.history">
 			<math-output equation="entry.equation"></math-output>
 			<div class="operator_display clearfix">
