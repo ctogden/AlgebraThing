@@ -2,14 +2,15 @@
 	<div id="equation_bottom_container">
 		<div id="equation_display">
 			<math-output equation="equation"></math-output>
-			<div class="operator_display clearfix" ng-controller="EquationEditorCtrl as editor"">
+			<div class="operator_display clearfix">
 				<form ng-submit="performOperation()">
 					<span id='operator_display_side1'>{{ operator }}
-						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="editor.secondaryOp" ng-pattern="/^\d+$/" auto-focus>
+						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="opValue" ng-pattern="/^\d+$/" auto-focus>
 					</span>
 					<span id='operator_display_side2'>{{ operator }}
-						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="editor.secondaryOp" ng-pattern="/^\d+$/">
+						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="opValue" ng-pattern="/^\d+$/">
 					</span>
+					<input type="submit" class="hidden-submit">
 				</form>
 			</div>
 

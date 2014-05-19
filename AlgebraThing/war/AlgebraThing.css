@@ -417,3 +417,7 @@ input.secondary-op.ng-invalid {
 	left: 20px;
 }
 
+.hidden-submit {
+	position: absolute;
+	visibility: hidden;
+}
