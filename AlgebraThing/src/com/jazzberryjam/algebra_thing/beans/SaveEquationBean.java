@@ -1,6 +1,7 @@
 package com.jazzberryjam.algebra_thing.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -63,10 +64,14 @@ public class SaveEquationBean implements Serializable {
     		}
     	}
 		
+    	Date date = new Date();
     	Entity equationData = new Entity("equation", equationKey);
     	equationData.setProperty("username", loginStatusBean.getUsername());
     	equationData.setProperty("equationID", loginStatusBean.getEquationID());
     	equationData.setProperty("equationJSON", equationJSON);
+    	equationData.setProperty("dateWorkedOn", date.toString());
     	datastore.put(equationData);
+    	
+    	Key 
 	}
 }

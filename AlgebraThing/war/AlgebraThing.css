@@ -439,3 +439,35 @@ input.secondary-op.ng-invalid {
 	position: absolute;
 	visibility: hidden;
 }
+
+#prof_equ_container {
+	position: relative;
+	width: 450px;
+	height: auto;
+	margin-left: 22px;
+	margin-top: -40px;
+}
+
+.prof_equ_wrapper {
+	position: relative;
+	width: 450px;
+	height: 50px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: 1px solid;
+	border-radius: 4px;
+	background: #f5f5f5;
+	font-size: 12pt;
+}
+
+.prof_equ_left {
+	float: left;
+	line-height: 50px;
+	margin-left: 10px;
+}
+
+.prof_equ_right {
+	float: right;
+	line-height: 50px;
+	margin-right: 10px;
+}
