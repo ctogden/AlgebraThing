@@ -56,10 +56,9 @@
 				var formattedDateJoined = dateJoined[1] + " " + dateJoined[2] + numEnd + ", " + dateJoined[5];
 				var equSolved = '#{userDataBean.equSolved}';
 				var equSaved = '#{userDataBean.equSaved}';
-				
 				var equationHistory = new Array();
 			</script>
-			<ui:repeat var="equation" value="#{userDataBean.equationHistoryList}">
+			<ui:repeat id="equation_history_loader" var="equation" value="#{userDataBean.equationHistoryList}">
 				<script>
 					equationHistory.push('#{equation}');
 				</script>
@@ -82,21 +81,28 @@
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<h:panelGroup rendered="#{loginStatusBean.loggedIn}">
-<<<<<<< HEAD
 						<li class="active"><a class="newEquation_link" href="#" onclick="$('#equ_id_form\\:inc_id').click(); equJSONObj = {};">New
+<<<<<<< HEAD
 							Equation</a>
+						<li><a class="welcome_header" href="#username"><i>Hello, 
+						<h:outputText value="#{loginStatusBean.firstname}" /></i></a></li>
 							<h:form id="equ_id_form">
 								<h:commandButton id="inc_id" style="display: none" actionListener="#{loginStatusBean.incEquationID}">
 									<f:ajax execute="@form" />
 								</h:commandButton>
 							</h:form>	
 						</li>
+=======
+ +							Equation</a>
+ +							<h:form id="equ_id_form">
+ +								<h:commandButton id="inc_id" style="display: none" actionListener="#{loginStatusBean.incEquationID}">
+ +									<f:ajax execute="@form" />
+ +								</h:commandButton>
+ +							</h:form>	
+ +						</li>
 						<li><a class="welcome_header" href="#username">Hello <h:outputText
 									value="#{loginStatusBean.firstname}" /></a></li>
-=======
-						<li><a class="welcome_header" href="#username"><i>Hello, <h:outputText
-									value="#{loginStatusBean.firstname}" /></i></a></li>
->>>>>>> origin/master
+>>>>>>> afd0cb9a3791087bf4db6da6f8f36a5594f233c2
 					</h:panelGroup>
 					
 					<h:panelGroup rendered="#{!loginStatusBean.loggedIn}">
@@ -162,7 +168,7 @@
 							<h:form id="save_equ_form">
 								<h:inputHidden id="equInput" value="#{saveEquationBean.equationJSON}" />
 								<h:commandLink onclick="$('#save_equ_form\\:equInput').val(JSON.stringify(equJSONObj));" styleClass="save_link_ln" value="Save" action="#{saveEquationBean.saveEquation}">
-									<f:ajax execute="@form" />
+									<f:ajax execute="@form" update=":equation_history_loader" />
 								</h:commandLink>
 							</h:form>
 						</li>
