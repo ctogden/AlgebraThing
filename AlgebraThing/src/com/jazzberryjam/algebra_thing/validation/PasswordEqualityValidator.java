@@ -17,7 +17,11 @@ public class PasswordEqualityValidator implements Validator {
 		String confPword = (String) component.getAttributes().get("regConfPword");
 		
 		if(pword == null || confPword == null) {
-			return;
+			throw new ValidatorException(new FacesMessage("You must enter and confirm your password."));
+		}
+		
+		if(pword.equals("") || confPword.equals("")) {
+			throw new ValidatorException(new FacesMessage("You must enter and confirm your password."));
 		}
 		
 		if(!pword.equals(confPword)) {

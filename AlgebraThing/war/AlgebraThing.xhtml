@@ -96,12 +96,21 @@
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
 					<h:panelGroup rendered="#{loginStatusBean.loggedIn}">
+						<li class="active"><a class="newEquation_link" href="#" onclick="$('#equ_id_form\\:inc_id').click(); equJSONObj = {};">New
+							Equation</a>
+							<h:form id="equ_id_form">
+								<h:commandButton id="inc_id" style="display: none" actionListener="#{loginStatusBean.incEquationID}">
+									<f:ajax execute="@form" />
+								</h:commandButton>
+							</h:form>	
+						</li>
 						<li><a class="welcome_header" href="#username">Hello <h:outputText
 									value="#{loginStatusBean.firstname}" /></a></li>
 					</h:panelGroup>
-					<li class="active"><a class="newEquation_link" href="#">New
-							Equation</a></li>
+					
 					<h:panelGroup rendered="#{!loginStatusBean.loggedIn}">
+						<li class="active"><a class="newEquation_link" onclick="equJSONObj = {};" href="#">New
+							Equation</a></li>
 						<li><a class="save_link" href="#save"
 							onclick="$('#login_container').fadeToggle();$('#register_container').fadeOut();">Save</a>
 							<div id="login_container">
@@ -109,11 +118,12 @@
 									<h:inputText id="username"
 										styleClass="login_comp login_text_box"
 										value="#{loginStatusBean.username}" p:placeholder="Username"
-										required="true" />
+										binding="#{loginStatusBean.component}"
+										required="true" requiredMessage="You must enter a username." />
 									<h:inputSecret id="pword"
 										styleClass="login_comp login_text_box"
 										value="#{loginStatusBean.pword}" p:placeholder="Password"
-										required="true" />
+										required="true" requiredMessage="You must enter a password." />
 									<h:commandButton styleClass="login_button login_comp button"
 										action="#{loginStatusBean.login}" value="Login" />
 								</h:form>
@@ -123,15 +133,22 @@
 							</div>
 							<div id="register_container">
 								<h:form id="register_form">
-									<h:inputText styleClass="login_comp login_text_box"
+									<h:inputText id="regFirstname" styleClass="login_comp login_text_box"
 										value="#{loginStatusBean.firstname}" p:placeholder="First name"
-										required="true" />
-									<h:inputText styleClass="login_comp login_text_box"
+										required="true" requiredMessage="You must enter a firstname.">
+										<f:validator validatorId="nameValidator" />
+									</h:inputText>
+									<h:inputText id="regLastname" styleClass="login_comp login_text_box"
 										value="#{loginStatusBean.lastname}" p:placeholder="Last name"
-										required="true" />
-									<h:inputText styleClass="login_comp login_text_box"
+										required="true" requiredMessage="You must enter a lastname.">
+										<f:validator validatorId="lastnameValidator" />
+									</h:inputText>
+									<h:inputText id="regUsername" styleClass="login_comp login_text_box"
 										value="#{loginStatusBean.regUsername}"
-										p:placeholder="Username" required="true" />
+										p:placeholder="Username" required="true" 
+										requiredMessage="You must enter a username.">
+										<f:validator validatorId="usernameValidator" />
+									</h:inputText>
 									<h:inputSecret id="regPword"
 										styleClass="login_comp login_text_box"
 										value="#{loginStatusBean.regPword}" p:placeholder="Password"
@@ -140,11 +157,10 @@
 										<f:attribute name="regConfPword"
 											value="#{regConfPword.submittedValue}" />
 									</h:inputSecret>
-									<h:inputSecret styleClass="login_comp login_text_box"
+									<h:inputSecret id="regConfPword" styleClass="login_comp login_text_box"
 										value="#{loginStatusBean.regConfPword}"
-										p:placeholder="Confirm Password" required="true"
-										requiredMessage="You must confirm your password"
-										binding="#{regConfPword}" />
+										p:placeholder="Confirm Password" binding="#{regConfPword}"
+										required="true" requiredMessage="You must confirm your password." />
 									<h:commandButton styleClass="register_button login_comp button"
 										action="#{loginStatusBean.register}" value="Register" />
 								</h:form>
@@ -171,6 +187,19 @@
 			<!--/.nav-collapse -->
 		</div>
 		</header>
+		<h:panelGroup layout="block" styleClass="feedback" rendered="#{facesContext.messageList.size() != 0}">
+			<h:message styleClass="error_message" for="register_form:regFirstname" />
+			<h:message styleClass="error_message" for="register_form:regLastname" />
+			<h:message styleClass="error_message" for="register_form:regUsername" />
+			<h:message styleClass="error_message" for="register_form:regPword" />
+			<h:message styleClass="error_message" for="register_form:regConfPword" />
+			<h:message styleClass="error_message" for="login_form:username" />
+			<h:message styleClass="error_message" for="login_form:pword" />
+		</h:panelGroup>
+		<h:panelGroup layout="block" styleClass="feedback" 
+			rendered="#{facesContext.messageList.size() == 0 &amp;&amp; loginStatusBean.showLoginFeedback}">
+			<h:outputText styleClass="error_message" value="#{loginStatusBean.loginFeedback}" />
+		</h:panelGroup>
 		<div id="main_content" data-ng-view="true"></div>
 
 		<!-- Footer -->

@@ -26,6 +26,23 @@ html,body {
 	top:50px;
 }
 
+.feedback {
+	position: absolute;
+    width: 350px;
+    height: auto;
+    background-color: #ffebe8;
+    border: 1px solid #dd3c10;
+    left: -175px;
+    margin-left: 50%;
+    top: 60px;
+    font-size: 13pt;
+    text-align: center;
+}
+
+.error_message {
+	display: block;
+}
+
 .header {
 	display: block;
 	text-align: center;

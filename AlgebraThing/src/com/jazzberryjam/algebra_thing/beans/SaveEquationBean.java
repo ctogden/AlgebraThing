@@ -18,6 +18,7 @@ import com.google.appengine.api.datastore.Query;
 @RequestScoped
 public class SaveEquationBean implements Serializable {
 	private String equationJSON;
+	private int equationID;
 	private LoginStatusBean loginStatusBean;
 	
 	public SaveEquationBean() {
@@ -32,6 +33,14 @@ public class SaveEquationBean implements Serializable {
 		this.equationJSON = equationJSON;
 	}
 	
+	public int getEquationID() {
+		return equationID;
+	}
+
+	public void setEquationID(int equationID) {
+		this.equationID = equationID;
+	}
+
 	public LoginStatusBean getLoginStatusBean() {
 		return loginStatusBean;
 	}
@@ -41,10 +50,22 @@ public class SaveEquationBean implements Serializable {
 	}
 
 	public void saveEquation() {
-		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-		Key equationKey = KeyFactory.createKey("equation", "equation");
+		DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();		
+		Key equationKey = KeyFactory.createKey("equation", "equation");		
+    	Query equationQuery = new Query("equation", equationKey);
+    	List<Entity> equationList = datastore.prepare(equationQuery).asList(FetchOptions.Builder.withDefaults());
+
+    	for(Entity equation : equationList) {
+    		if(loginStatusBean.getUsername().equalsIgnoreCase((String) equation.getProperty("username"))) {
+    			if(loginStatusBean.getEquationID() == ((long) equation.getProperty("equationID"))) {
+    				datastore.delete(equation.getKey());
+    			}
+    		}
+    	}
+		
     	Entity equationData = new Entity("equation", equationKey);
     	equationData.setProperty("username", loginStatusBean.getUsername());
+    	equationData.setProperty("equationID", loginStatusBean.getEquationID());
     	equationData.setProperty("equationJSON", equationJSON);
     	datastore.put(equationData);
 	}

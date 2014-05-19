@@ -33,4 +33,19 @@
         <validator-id>passwordEqualityValidator</validator-id>
         <validator-class>com.jazzberryjam.algebra_thing.validation.PasswordEqualityValidator</validator-class>
     </validator>
+    
+    <validator>
+        <validator-id>usernameValidator</validator-id>
+        <validator-class>com.jazzberryjam.algebra_thing.validation.UsernameValidator</validator-class>
+    </validator>
+    
+    <validator>
+        <validator-id>nameValidator</validator-id>
+        <validator-class>com.jazzberryjam.algebra_thing.validation.NameValidator</validator-class>
+    </validator>
+    
+    <validator>
+        <validator-id>lastnameValidator</validator-id>
+        <validator-class>com.jazzberryjam.algebra_thing.validation.LastnameValidator</validator-class>
+    </validator>
 </faces-config>
