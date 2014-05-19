@@ -1,15 +1,25 @@
 <div id="big_equation_container">
 	<div id="equation_bottom_container">
+		<div class="equation_entry" ng-repeat="entry in equation.history">
+			<math-output equation="entry.equation"></math-output>
+			<div class="operator_display clearfix">
+				<span class='operator_left'>{{ entry.operator }}{{ entry.operatorValue }}
+				</span>
+				<span class='operator_right'>{{ entry.operator }}{{ entry.operatorValue }}
+				</span>
+			</div>
+		</div>
 		<div id="equation_display">
-			<math-output equation="equation"></math-output>
-			<div class="operator_display clearfix" ng-controller="EquationEditorCtrl as editor"">
-				<form>
+			<math-output equation="equation.value"></math-output>
+			<div class="operator_display clearfix">
+				<form ng-submit="performOperation()">
 					<span id='operator_display_side1'>{{ operator }}
-						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="editor.secondaryOp" ng-pattern="/^\d+$/">
+						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="opValue" ng-pattern="/^\d+$/" auto-focus>
 					</span>
 					<span id='operator_display_side2'>{{ operator }}
-						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="editor.secondaryOp" ng-pattern="/^\d+$/">
+						<input ng-hide="editor.inputHidden" class="secondary-op" type="text" ng-model="opValue" ng-pattern="/^\d+$/">
 					</span>
+					<input type="submit" class="hidden-submit">
 				</form>
 			</div>
 

@@ -3,7 +3,8 @@
 	var string = Parsimmon.string; 
 	var optWhitespace = Parsimmon.optWhitespace; 
 	var lazy = Parsimmon.lazy; 
-	var seq = Parsimmon.seq; 
+	var seq = Parsimmon.seq;
+	var many = Parsimmon.many; 
 	
 		
 	function lexeme(p) {
@@ -32,13 +33,6 @@
 		}
 	}
 	
-	function getParenObject(value){
-		return {
-			type: "paren" ,
-			value : value
-		};
-	}
-	
 	var lparen = lexeme(string("(")); 
 	var rparen = lexeme(string(")")); 
 	
@@ -46,12 +40,26 @@
 	var multdiv = lexeme(string("*").or(string("/"))); 
 	var exponent = lexeme(string("^")); 
 	var number = lexeme(regex(/[0-9]+/).map(parseInt)); 
-	var id = lexeme(regex(/[a-z_]\w*/i)); 
+	var variable = lexeme(regex(/[a-z]/i)); 
 	
-	var atom = number.or(id); 
-	var parenexpr = atom.or(lparen.then(lazy(function() {
+ 
+	
+	var monomial = seq(number.or(variable),variable.many()).map(function(seqArray){
+		var monomialTerms = [seqArray[0]].concat(seqArray[1]); 
+		var current = monomialTerms[0]; 
+		for(var i = 1; i < monomialTerms.length; i++){
+			current = {
+				type: "binop",  
+				left: current, 
+				operator: "*",
+				right: monomialTerms[i]  
+			};
+		}
+		return current; 
+	}); 
+	var parenexpr = monomial.or(lparen.then(lazy(function() {
 		return expr;
-	}).map(getParenObject)).skip(rparen)); 
+	})).skip(rparen)); 
 	var expexpr = seq(parenexpr, exponent, parenexpr).map(function(array){
 		return{
 			type: "binop",  
